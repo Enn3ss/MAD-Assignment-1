@@ -5,6 +5,7 @@ public class Customer {
     String fullName;
     String email;
     String password;
+    int cartId;
 
     public Customer(String id, String fullName, String email, String password) {
         this.id = id;
