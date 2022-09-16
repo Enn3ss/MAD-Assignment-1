@@ -87,7 +87,7 @@ public class CartDBModel
                 "SELECT * " +
                 "FROM " + CartTable.NAME + " " +
                 "WHERE " + CartTable.Cols.ID + " = " + cartId;
-        
+
         Cursor cursor = db.rawQuery(searchQuery, null);
         CartDBCursor cartDBCursor = new CartDBCursor(cursor);
 

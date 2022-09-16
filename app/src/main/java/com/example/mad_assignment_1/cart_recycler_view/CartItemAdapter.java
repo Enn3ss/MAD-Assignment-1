@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mad_assignment_1.CommonData;
 import com.example.mad_assignment_1.R;
 import com.example.mad_assignment_1.databases.carts.Cart;
 import com.example.mad_assignment_1.databases.carts.CartDBModel;
@@ -39,11 +40,8 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemViewHolder>
     @Override
     public void onBindViewHolder(@NonNull CartItemViewHolder holder, int position)
     {
-        //String test = "1,2,3,4";
-
-        //Cart cart = cartDBModel.getCartById("");
-
         Cart cart = new Cart("", "1,5,7", 0.0);
+        //Cart cart = CommonData.getCart();
         cartDBModel.addCart(cart);
 
         String items = cart.getItems();
