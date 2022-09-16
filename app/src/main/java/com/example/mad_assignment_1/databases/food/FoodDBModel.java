@@ -13,6 +13,7 @@ import com.example.mad_assignment_1.databases.restaurants.Restaurant;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBCursor;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBSchema;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class FoodDBModel {
