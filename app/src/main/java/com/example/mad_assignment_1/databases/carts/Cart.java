@@ -2,24 +2,24 @@ package com.example.mad_assignment_1.databases.carts;
 
 public class Cart
 {
-    int cartId;
+    String cartId;
     String items;
     double totalAmount;
 
-    public Cart(int cartId, String items, double totalAmount)
+    public Cart(String cartId, String items, double totalAmount)
     {
         this.cartId = cartId;
         this.items = items;
         this.totalAmount = totalAmount;
     }
 
-    public int getCartId() { return cartId; }
+    public String getCartId() { return cartId; }
 
     public String getItems() { return items; }
 
     public double getTotalAmount() { return totalAmount; }
 
-    public void setCartId(int cartId)
+    public void setCartId(String cartId)
     {
         this.cartId = cartId;
     }

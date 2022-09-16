@@ -8,14 +8,18 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.NonNull;
 
+import com.example.mad_assignment_1.databases.carts.Cart;
+import com.example.mad_assignment_1.databases.carts.CartDBCursor;
+import com.example.mad_assignment_1.databases.carts.CartDBSchema;
 import com.example.mad_assignment_1.databases.food.foodDBSchema.foodTable;
 import com.example.mad_assignment_1.databases.restaurants.Restaurant;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBCursor;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBSchema;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class FoodDBModel {
+public class FoodDBModel implements Serializable {
     SQLiteDatabase database;
 
     public void load(Context context) {
@@ -69,51 +73,27 @@ public class FoodDBModel {
         return foodList;
     }
 
-    public ArrayList<Food> getFoodFrom(String restaurantId) {
-        ArrayList<Food> foodList = new ArrayList<>();
-        String searchQuery =
-                "SELECT * " +
-                "FROM " + foodTable.NAME + " " +
-                "WHERE " + foodTable.Cols.RESTAURANT_ID + " = " + restaurantId;
-        Cursor cursor = database.rawQuery(searchQuery, null);
-        FoodDBCursor foodDBCursor = new FoodDBCursor(cursor);
+    public Food getFoodById(String foodId)
+    {
+        FoodDBCursor cursor = new FoodDBCursor(database.query(foodTable.NAME, null, "id=?", new String[] { foodId }, null, null, null));
 
-        try {
-            foodDBCursor.moveToFirst();
-            while (!foodDBCursor.isAfterLast()) {
-                foodList.add(foodDBCursor.getFood());
-                foodDBCursor.moveToNext();
+        try
+        {
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast())
+            {
+                return cursor.getFood(); // Returns a food with matching foodId if found
             }
         }
-        finally {
+        finally
+        {
             cursor.close();
         }
-        return foodList;
+
+        return null;
     }
 
     public int getSize() {
         return (int) DatabaseUtils.queryNumEntries(database, foodTable.NAME);
-    }
-
-    public int getSizeFrom(String restaurantId) {
-        int count = 0;
-        String searchQuery =
-                "SELECT * " +
-                "FROM " + foodTable.NAME + " " +
-                "WHERE " + foodTable.Cols.RESTAURANT_ID + " = " + restaurantId;
-        Cursor cursor = database.rawQuery(searchQuery, null);
-        FoodDBCursor foodDBCursor = new FoodDBCursor(cursor);
-
-        try {
-            foodDBCursor.moveToFirst();
-            while (!foodDBCursor.isAfterLast()) {
-                count += 1;
-                foodDBCursor.moveToNext();
-            }
-        }
-        finally {
-            cursor.close();
-        }
-        return count;
     }
 }

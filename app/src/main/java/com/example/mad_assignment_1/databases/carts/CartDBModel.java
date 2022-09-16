@@ -2,13 +2,16 @@ package com.example.mad_assignment_1.databases.carts;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.mad_assignment_1.databases.carts.CartDBSchema.CartTable;
+import com.example.mad_assignment_1.databases.restaurants.RestaurantDBSchema;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartDBModel
+public class CartDBModel implements Serializable
 {
     private List<Cart> cartList; // The data
     private SQLiteDatabase db; // The database connection
@@ -60,5 +63,30 @@ public class CartDBModel
         }
 
         return cartList;
+    }
+
+    public Cart getCartById(String cartId)
+    {
+        CartDBCursor cursor = new CartDBCursor(db.query(CartTable.NAME, null, "cartId=?", new String[] { cartId }, null, null, null));
+
+        try
+        {
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast())
+            {
+                return cursor.getCart(); // Returns a cart with matching cartId if found
+            }
+        }
+        finally
+        {
+            cursor.close();
+        }
+
+        return null;
+    }
+
+    public int getSize()
+    {
+        return (int) DatabaseUtils.queryNumEntries(db, CartTable.NAME);
     }
 }
