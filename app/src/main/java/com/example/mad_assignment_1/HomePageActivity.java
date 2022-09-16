@@ -25,6 +25,9 @@ public class HomePageActivity extends AppCompatActivity {
         return instance;
     }
 
+    private static final String FOOD_DB_MODEL = "com.example.foodDBModel";
+    private static final String CART_DB_MODEL = "com.example.cartDBModel";
+
     private RestaurantViewModel restaurantViewModel;
 
     FoodFragment foodFragment;
@@ -44,10 +47,10 @@ public class HomePageActivity extends AppCompatActivity {
         RestaurantDBModel restaurantDBModel = new RestaurantDBModel();
         restaurantDBModel.load(getApplicationContext());
 
-        FoodDBModel foodDBModel = new FoodDBModel();
+        FoodDBModel foodDBModel = FoodDBModel.getInstance();
         foodDBModel.load(getApplicationContext());
 
-        CartDBModel cartDBModel = new CartDBModel();
+        CartDBModel cartDBModel = CartDBModel.getInstance();
         cartDBModel.load(getApplicationContext());
 
         SpecialsFragment specialsFragment = new SpecialsFragment(foodDBModel);
@@ -62,7 +65,7 @@ public class HomePageActivity extends AppCompatActivity {
         cartButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(HomePageActivity.this, CartPageActivity.class);
-                startActivity(CartPageActivity.getIntent(HomePageActivity.this));
+                startActivity(intent);
             }
         });
 

@@ -11,7 +11,6 @@ public class CartDBSchema
             public static final String ID = "id";
             public static final String ITEMS = "items";
             public static final String TOTAL_AMOUNT = "total_amount";
-            public static final String IS_GUEST = "is_guest";
         }
     }
 }

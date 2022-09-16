@@ -11,10 +11,23 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartDBModel implements Serializable
+public class CartDBModel
 {
+    private static CartDBModel instance = null;
     private List<Cart> cartList; // The data
     private SQLiteDatabase db; // The database connection
+
+    private CartDBModel() {}
+
+    public static CartDBModel getInstance()
+    {
+        if(instance == null)
+        {
+            instance = new CartDBModel();
+        }
+
+        return instance;
+    }
 
     public void load(Context context)
     {

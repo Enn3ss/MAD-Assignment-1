@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.NonNull;
 
+import com.example.mad_assignment_1.databases.carts.CartDBModel;
 import com.example.mad_assignment_1.databases.food.foodDBSchema.foodTable;
 import com.example.mad_assignment_1.databases.restaurants.Restaurant;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBCursor;
@@ -17,7 +18,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class FoodDBModel {
+    private static FoodDBModel instance = null;
     SQLiteDatabase database;
+
+    private FoodDBModel() {}
+
+    public static FoodDBModel getInstance()
+    {
+        if(instance == null)
+        {
+            instance = new FoodDBModel();
+        }
+
+        return instance;
+    }
 
     public void load(Context context) {
         this.database = new FoodDBHelper(context).getWritableDatabase();
