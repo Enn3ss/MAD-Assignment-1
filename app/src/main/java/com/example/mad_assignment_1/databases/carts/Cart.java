@@ -24,7 +24,7 @@ public class Cart
         this.cartId = cartId;
     }
 
-    public void setItems(String item)
+    public void addFood(String item)
     {
         this.items += "," + item;
     }

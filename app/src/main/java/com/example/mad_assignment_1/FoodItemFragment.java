@@ -34,6 +34,7 @@ public class FoodItemFragment extends Fragment {
     Button subtractButton;
     EditText foodItemAmount;
     Button addButton;
+    Button addToCart;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -93,12 +94,13 @@ public class FoodItemFragment extends Fragment {
         subtractButton = (Button) view.findViewById(R.id.subtractButton);
         foodItemAmount = (EditText) view.findViewById(R.id.foodItemAmount);
         addButton = (Button) view.findViewById(R.id.addButton);
+        addToCart = (Button) view.findViewById(R.id.addToCart);
 
         Food food = foodDBModel.getFoodById(selectedFoodItem);
 
         foodItemIcon.setImageResource(food.getImage());
         foodItemName.setText(food.getName());
-        foodItemPrice.setText(Double.toString(food.getPrice()));
+        foodItemPrice.setText("$" + Double.toString(food.getPrice()));
         foodItemDescription.setText(food.getDescription());
         foodItemAmount.setText("1");
 
@@ -122,6 +124,12 @@ public class FoodItemFragment extends Fragment {
             }
         });
 
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CommonData.getCart().addFood(food.getId());
+            }
+        });
         return view;
     }
 }

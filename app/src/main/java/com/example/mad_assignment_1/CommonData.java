@@ -12,7 +12,7 @@ public class CommonData {
     }
 
     public static void addCartItem(String input) {
-        guestCart.setItems(input);
+        guestCart.addFood(input);
     }
 
     public static void setCartTotalPrice(double input) {
