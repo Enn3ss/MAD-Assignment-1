@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
+import com.example.mad_assignment_1.CommonData;
 import com.example.mad_assignment_1.R;
 import com.example.mad_assignment_1.databases.food.Food;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
@@ -33,6 +34,20 @@ public class SpecialsAdapter extends Adapter<SpecialsViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull SpecialsViewHolder holder, int position) {
         holder.bind(foods.get(position));
+
+        holder.specialIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        holder.specialName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override

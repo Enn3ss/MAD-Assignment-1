@@ -33,7 +33,6 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemViewHolder>
     {
         LayoutInflater li = LayoutInflater.from(parent.getContext());
         View v = li.inflate(R.layout.each_cart_item_view, parent, false);
-        System.out.println("created");
         return new CartItemViewHolder(v);
     }
 
