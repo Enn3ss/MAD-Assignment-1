@@ -64,8 +64,7 @@ public class HomePageActivity extends AppCompatActivity {
 
         cartButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(HomePageActivity.this, CartPageActivity.class);
-                startActivity(intent);
+                startActivity(CartPageActivity.getIntent(HomePageActivity.this));
             }
         });
 

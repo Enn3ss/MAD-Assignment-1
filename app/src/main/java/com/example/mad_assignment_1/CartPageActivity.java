@@ -28,4 +28,9 @@ public class CartPageActivity extends AppCompatActivity
         CartItemAdapter adapter = new CartItemAdapter(cartDBModel, foodDBModel);
         rv.setAdapter(adapter);
     }
+
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent(context, CartPageActivity.class);
+        return intent;
+    }
 }
