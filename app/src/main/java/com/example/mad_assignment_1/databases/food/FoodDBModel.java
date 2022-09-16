@@ -107,17 +107,25 @@ public class FoodDBModel {
     }
 
     public Food getFoodById(String foodId) {
-        FoodDBCursor cursor = new FoodDBCursor(database.query(foodTable.NAME, null, "id=?", new String[]{foodId}, null, null, null));
+        Food food = null;
+        String searchQuery =
+                "SELECT * " +
+                "FROM " + foodTable.NAME + " " +
+                "WHERE " + foodTable.Cols.ID + " = " + foodId;
+        Cursor cursor = database.rawQuery(searchQuery, null);
+        FoodDBCursor foodDBCursor = new FoodDBCursor(cursor);
 
         try {
-            cursor.moveToFirst();
-            while (!cursor.isAfterLast()) {
-                return cursor.getFood(); // Returns a food with matching foodId if found
+            foodDBCursor.moveToFirst();
+            while (!foodDBCursor.isAfterLast()) {
+                food = foodDBCursor.getFood();
+                foodDBCursor.moveToNext();
             }
-        } finally {
+        }
+        finally {
             cursor.close();
         }
-        return null;
+        return food;
     }
 
     public int getSize() {

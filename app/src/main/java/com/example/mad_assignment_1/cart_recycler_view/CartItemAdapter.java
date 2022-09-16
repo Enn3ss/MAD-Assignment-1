@@ -40,10 +40,13 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemViewHolder>
     {
         //String test = "1,2,3,4";
 
-        //Cart cart = cartDBModel.getCartById(test);
-        //String items = cart.getItems();
-        //String[] foods = items.split(",");
-        String[] foods = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15" };
+        //Cart cart = cartDBModel.getCartById("");
+
+        Cart cart = new Cart("", "1,5,7", 0.0);
+        cartDBModel.addCart(cart);
+
+        String items = cart.getItems();
+        String[] foods = items.split(",");
         holder.bind(foodDBModel.getFoodById(foods[position]));
     }
 
