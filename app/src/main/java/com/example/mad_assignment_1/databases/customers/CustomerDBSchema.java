@@ -10,6 +10,7 @@ public class CustomerDBSchema {
             public static final String FULLNAME = "fullname";
             public static final String EMAIL = "email";
             public static final String PASSWORD = "password";
+            public static final String CART_ID = "cart_id";
         }
     }
 }

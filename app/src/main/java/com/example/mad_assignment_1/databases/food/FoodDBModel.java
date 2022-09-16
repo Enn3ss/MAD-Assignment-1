@@ -69,7 +69,65 @@ public class FoodDBModel {
         return foodList;
     }
 
+    public ArrayList<Food> getFoodFrom(String restaurantId) {
+        ArrayList<Food> foodList = new ArrayList<>();
+        String searchQuery =
+                "SELECT * " +
+                "FROM " + foodTable.NAME + " " +
+                "WHERE " + foodTable.Cols.RESTAURANT_ID + " = " + restaurantId;
+        Cursor cursor = database.rawQuery(searchQuery, null);
+        FoodDBCursor foodDBCursor = new FoodDBCursor(cursor);
+
+        try {
+            foodDBCursor.moveToFirst();
+            while (!foodDBCursor.isAfterLast()) {
+                foodList.add(foodDBCursor.getFood());
+                foodDBCursor.moveToNext();
+            }
+        }
+        finally {
+            cursor.close();
+        }
+        return foodList;
+    }
+
+    public Food getFoodById(String foodId) {
+        FoodDBCursor cursor = new FoodDBCursor(database.query(foodTable.NAME, null, "id=?", new String[]{foodId}, null, null, null));
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                return cursor.getFood(); // Returns a food with matching foodId if found
+            }
+        } finally {
+            cursor.close();
+        }
+        return null;
+    }
+
     public int getSize() {
         return (int) DatabaseUtils.queryNumEntries(database, foodTable.NAME);
+    }
+
+    public int getSizeFrom(String restaurantId) {
+        int count = 0;
+        String searchQuery =
+                "SELECT * " +
+                "FROM " + foodTable.NAME + " " +
+                "WHERE " + foodTable.Cols.RESTAURANT_ID + " = " + restaurantId;
+        Cursor cursor = database.rawQuery(searchQuery, null);
+        FoodDBCursor foodDBCursor = new FoodDBCursor(cursor);
+
+        try {
+            foodDBCursor.moveToFirst();
+            while (!foodDBCursor.isAfterLast()) {
+                count += 1;
+                foodDBCursor.moveToNext();
+            }
+        }
+        finally {
+            cursor.close();
+        }
+        return count;
     }
 }

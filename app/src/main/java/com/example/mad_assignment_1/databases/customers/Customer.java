@@ -5,13 +5,14 @@ public class Customer {
     String fullName;
     String email;
     String password;
-    int cartId;
+    String cartId;
 
-    public Customer(String id, String fullName, String email, String password) {
+    public Customer(String id, String fullName, String email, String password, String cartId) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.password = password;
+        this.cartId = cartId;
     }
 
     public String getId() {
@@ -44,5 +45,13 @@ public class Customer {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
     }
 }

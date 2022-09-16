@@ -3,6 +3,7 @@ package com.example.mad_assignment_1.restaurants_fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -70,10 +71,10 @@ public class RestaurantFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_restaurants, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.selectorRecyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.restaurantsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        RestaurantAdapter selectorAdapter = new RestaurantAdapter(restaurantDBModel);
-        recyclerView.setAdapter(selectorAdapter);
+        RestaurantAdapter restaurantAdapter = new RestaurantAdapter(restaurantDBModel);
+        recyclerView.setAdapter(restaurantAdapter);
         return view;
     }
 }
