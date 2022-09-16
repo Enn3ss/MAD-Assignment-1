@@ -24,7 +24,7 @@ public class CartPageActivity extends AppCompatActivity
         CartDBModel cartDBModel = CartDBModel.getInstance();
 
         RecyclerView rv = findViewById(R.id.recView);
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         CartItemAdapter adapter = new CartItemAdapter(cartDBModel, foodDBModel);
         rv.setAdapter(adapter);
     }

@@ -40,6 +40,7 @@ public class HomePageActivity extends AppCompatActivity {
         instance = this;
 
         Button cartButton = (Button) findViewById(R.id.cartButton);
+        Button checkOutButton = (Button) findViewById(R.id.checkoutButton);
 
         //Create Restaurants ViewModel.
         restaurantViewModel = new ViewModelProvider(this).get(RestaurantViewModel.class);
@@ -63,8 +64,16 @@ public class HomePageActivity extends AppCompatActivity {
         fragmentManager.beginTransaction().add(R.id.menuFragmentContainer, restaurantFragment).setReorderingAllowed(true).commit();
 
         cartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 startActivity(CartPageActivity.getIntent(HomePageActivity.this));
+            }
+        });
+
+        checkOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(CheckOutPageActivity.getIntent(HomePageActivity.this));
             }
         });
 

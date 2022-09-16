@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mad_assignment_1.R;
 import com.example.mad_assignment_1.databases.carts.Cart;
 import com.example.mad_assignment_1.databases.carts.CartDBModel;
+import com.example.mad_assignment_1.databases.food.Food;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemViewHolder>
@@ -31,7 +33,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemViewHolder>
     {
         LayoutInflater li = LayoutInflater.from(parent.getContext());
         View v = li.inflate(R.layout.each_cart_item_view, parent, false);
-
+        System.out.println("created");
         return new CartItemViewHolder(v);
     }
 
@@ -48,11 +50,12 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemViewHolder>
         String items = cart.getItems();
         String[] foods = items.split(",");
         holder.bind(foodDBModel.getFoodById(foods[position]));
+        //holder.bind(new Food("2", "food", 50.0, "yum yum", "2", R.drawable.brownie_icon));
     }
 
     @Override
     public int getItemCount()
     {
-        return cartDBModel.getSize();
+        return 3;
     }
 }
