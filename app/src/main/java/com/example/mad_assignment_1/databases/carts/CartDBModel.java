@@ -2,9 +2,12 @@ package com.example.mad_assignment_1.databases.carts;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.mad_assignment_1.databases.carts.CartDBSchema.CartTable;
+import com.example.mad_assignment_1.databases.food.FoodDBCursor;
+import com.example.mad_assignment_1.databases.food.foodDBSchema;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBSchema;
 
 import java.io.Serializable;
@@ -80,19 +83,25 @@ public class CartDBModel
 
     public Cart getCartById(String cartId)
     {
-        CartDBCursor cursor = new CartDBCursor(db.query(CartTable.NAME, null, "cartId=?", new String[] { cartId }, null, null, null));
+        String searchQuery =
+                "SELECT * " +
+                "FROM " + CartTable.NAME + " " +
+                "WHERE " + CartTable.Cols.ID + " = " + cartId;
+        
+        Cursor cursor = db.rawQuery(searchQuery, null);
+        CartDBCursor cartDBCursor = new CartDBCursor(cursor);
 
         try
         {
-            cursor.moveToFirst();
-            while(!cursor.isAfterLast())
+            cartDBCursor.moveToFirst();
+            while(!cartDBCursor.isAfterLast())
             {
-                return cursor.getCart(); // Returns a cart with matching cartId if found
+                return cartDBCursor.getCart(); // Returns a cart with matching cartId if found
             }
         }
         finally
         {
-            cursor.close();
+            cartDBCursor.close();
         }
 
         return null;
