@@ -5,7 +5,7 @@ import com.example.mad_assignment_1.databases.customers.Customer;
 
 public class CommonData {
     private static Cart guestCart = new Cart("", "", 0.0);
-    private static Customer currentCustomer = null;
+    private static Customer currentCustomer = null; // If null then there is no customer currently logged in
 
     public static Cart getCart() {
         return guestCart;

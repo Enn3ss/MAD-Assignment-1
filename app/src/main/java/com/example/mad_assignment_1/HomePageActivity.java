@@ -3,6 +3,7 @@ package com.example.mad_assignment_1;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -12,9 +13,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.mad_assignment_1.databases.carts.CartDBModel;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBModel;
-import com.example.mad_assignment_1.food_fragment.FoodListFragment;
-import com.example.mad_assignment_1.restaurants_fragment.RestaurantListFragment;
-import com.example.mad_assignment_1.specials_fragment.SpecialsListFragment;
+import com.example.mad_assignment_1.food_fragment.FoodFragment;
+import com.example.mad_assignment_1.restaurants_fragment.RestaurantFragment;
+import com.example.mad_assignment_1.specials_fragment.SpecialsFragment;
 
 public class HomePageActivity extends AppCompatActivity {
     private static HomePageActivity instance = null;
@@ -22,11 +23,8 @@ public class HomePageActivity extends AppCompatActivity {
         return instance;
     }
 
-    RestaurantViewModel restaurantViewModel;
-    FoodViewModel foodViewModel;
-
-    FoodListFragment foodListFragment;
-    FoodItemFragment foodItemFragment;
+    private RestaurantViewModel restaurantViewModel;
+    private FoodFragment foodFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +35,10 @@ public class HomePageActivity extends AppCompatActivity {
 
         Button cartButton = (Button) findViewById(R.id.cartButton);
         Button checkOutButton = (Button) findViewById(R.id.checkoutButton);
+        Button logoutButton = (Button) findViewById(R.id.logoutButton);
 
         //Create Restaurants ViewModel.
         restaurantViewModel = new ViewModelProvider(this).get(RestaurantViewModel.class);
-        foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
 
         RestaurantDBModel restaurantDBModel = new RestaurantDBModel();
         restaurantDBModel.load(getApplicationContext());
@@ -51,14 +49,12 @@ public class HomePageActivity extends AppCompatActivity {
         CartDBModel cartDBModel = CartDBModel.getInstance();
         cartDBModel.load(getApplicationContext());
 
-        SpecialsListFragment specialsListFragment = new SpecialsListFragment(foodDBModel);
-        RestaurantListFragment restaurantListFragment = new RestaurantListFragment(restaurantDBModel);
+        SpecialsFragment specialsFragment = new SpecialsFragment(foodDBModel);
+        RestaurantFragment restaurantFragment = new RestaurantFragment(restaurantDBModel);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-
-        fragmentManager.beginTransaction().add(R.id.specialsFragmentContainer, specialsListFragment).commit();
-
-        fragmentManager.beginTransaction().add(R.id.menuFragmentContainer, restaurantListFragment).setReorderingAllowed(true).commit();
+        fragmentManager.beginTransaction().add(R.id.specialsFragmentContainer, specialsFragment).commit();
+        fragmentManager.beginTransaction().add(R.id.menuFragmentContainer, restaurantFragment).setReorderingAllowed(true).commit();
 
         cartButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,24 +70,21 @@ public class HomePageActivity extends AppCompatActivity {
             }
         });
 
-        restaurantViewModel.value.observe(this, new Observer<String>() {
+        logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChanged(String value) {
-                if (!value.equals("")) {
-                    foodListFragment = new FoodListFragment(foodDBModel, value);
-                    fragmentManager.beginTransaction().replace(R.id.menuFragmentContainer, foodListFragment).addToBackStack(null).commit();
-                    restaurantViewModel.setValue("");
-                }
+            public void onClick(View view) {
+                CommonData.setCurrentCustomer(null);
+                Toast.makeText(HomePageActivity.this, "You have logged out!", Toast.LENGTH_SHORT).show();
             }
         });
 
-        foodViewModel.value.observe(this, new Observer<String>() {
+        restaurantViewModel.value.observe(this, new Observer<String>() {
             @Override
-            public void onChanged(String value) {
-                if (!value.equals("")) {
-                    foodItemFragment = new FoodItemFragment(foodDBModel, value);
-                    fragmentManager.beginTransaction().replace(R.id.menuFragmentContainer, foodItemFragment).addToBackStack(null).commit();
-                    foodViewModel.setValue("");
+            public void onChanged(String string) {
+                if (!string.equals("")) {
+                    foodFragment = new FoodFragment(foodDBModel, string);
+                    fragmentManager.beginTransaction().replace(R.id.menuFragmentContainer, foodFragment).addToBackStack(null).commit();
+                    restaurantViewModel.setValue("");
                 }
             }
         });
