@@ -11,20 +11,20 @@ import com.example.mad_assignment_1.R;
 import com.example.mad_assignment_1.databases.food.Food;
 
 public class SpecialsViewHolder extends ViewHolder {
-    ImageView foodIcon;
-    TextView foodName;
+    ImageView specialIcon;
+    TextView specialName;
     TextView foodDescription;
 
     public SpecialsViewHolder(@NonNull View view) {
         super(view);
-        foodIcon = (ImageView) view.findViewById(R.id.foodIcon);
-        foodName = (TextView) view.findViewById(R.id.foodName);
+        specialIcon = (ImageView) view.findViewById(R.id.specialIcon);
+        specialName = (TextView) view.findViewById(R.id.specialName);
         //foodDescription = (TextView) view.findViewById(R.id.foodDescription);
     }
 
     public void bind(Food food) {
-        foodIcon.setImageResource(food.getImage());
-        foodName.setText(food.getName());
+        specialIcon.setImageResource(food.getImage());
+        specialName.setText(food.getName());
         //foodDescription.setText(food.getDescription());
     }
 }

@@ -3,12 +3,15 @@ package com.example.mad_assignment_1.food_fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mad_assignment_1.R;
+import com.example.mad_assignment_1.databases.food.FoodDBModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +19,8 @@ import com.example.mad_assignment_1.R;
  * create an instance of this fragment.
  */
 public class FoodFragment extends Fragment {
+    FoodDBModel foodDBModel;
+    String currentRestaurant;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +33,11 @@ public class FoodFragment extends Fragment {
 
     public FoodFragment() {
         // Required empty public constructor
+    }
+
+    public FoodFragment(FoodDBModel foodDBModel, String currentRestaurant) {
+        this.foodDBModel = foodDBModel;
+        this.currentRestaurant = currentRestaurant;
     }
 
     /**
@@ -61,6 +71,11 @@ public class FoodFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_food, container, false);
+        View view = inflater.inflate(R.layout.fragment_food, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.foodRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        FoodAdapter foodAdapter = new FoodAdapter(foodDBModel, currentRestaurant);
+        recyclerView.setAdapter(foodAdapter);
+        return view;
     }
 }
