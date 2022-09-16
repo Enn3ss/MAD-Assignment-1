@@ -8,14 +8,18 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.NonNull;
 
+import com.example.mad_assignment_1.databases.carts.Cart;
+import com.example.mad_assignment_1.databases.carts.CartDBCursor;
+import com.example.mad_assignment_1.databases.carts.CartDBSchema;
 import com.example.mad_assignment_1.databases.food.foodDBSchema.foodTable;
 import com.example.mad_assignment_1.databases.restaurants.Restaurant;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBCursor;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBSchema;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class FoodDBModel {
+public class FoodDBModel implements Serializable {
     SQLiteDatabase database;
 
     public void load(Context context) {
@@ -67,6 +71,26 @@ public class FoodDBModel {
             cursor.close();
         }
         return foodList;
+    }
+
+    public Food getFoodById(String foodId)
+    {
+        FoodDBCursor cursor = new FoodDBCursor(database.query(foodTable.NAME, null, "id=?", new String[] { foodId }, null, null, null));
+
+        try
+        {
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast())
+            {
+                return cursor.getFood(); // Returns a food with matching foodId if found
+            }
+        }
+        finally
+        {
+            cursor.close();
+        }
+
+        return null;
     }
 
     public int getSize() {
