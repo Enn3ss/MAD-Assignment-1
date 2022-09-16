@@ -8,9 +8,9 @@ public class CartDBSchema
 
         public static class Cols // Columns
         {
-            public static final String ID = "cartId";
+            public static final String ID = "id";
             public static final String ITEMS = "items";
-            public static final String TOTAL_AMOUNT = "totalAmount";
+            public static final String TOTAL_AMOUNT = "total_amount";
         }
     }
 }

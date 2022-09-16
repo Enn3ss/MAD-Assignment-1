@@ -19,14 +19,13 @@ public class CartPageActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_page);
-/*
-        Intent intent = getIntent();
-        FoodDBModel foodDBModel = (FoodDBModel) intent.getSerializableExtra("foodDBModel");
-        CartDBModel cartDBModel = (CartDBModel) intent.getSerializableExtra("cartDBModel");*/
-/*
+
+        FoodDBModel foodDBModel = FoodDBModel.getInstance();
+        CartDBModel cartDBModel = CartDBModel.getInstance();
+
         RecyclerView rv = findViewById(R.id.recView);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        CartItemAdapter adapter = new CartItemAdapter(new CartDBModel(), new FoodDBModel());
-        rv.setAdapter(adapter);*/
+        CartItemAdapter adapter = new CartItemAdapter(cartDBModel, foodDBModel);
+        rv.setAdapter(adapter);
     }
 }
