@@ -3,10 +3,10 @@ package com.example.mad_assignment_1;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class RestaurantViewModel extends ViewModel {
+public class FoodViewModel extends ViewModel {
     public MutableLiveData<String> value;
 
-    public RestaurantViewModel() {
+    public FoodViewModel() {
         value = new MutableLiveData<String>();
         value.setValue("");
     }
@@ -18,4 +18,4 @@ public class RestaurantViewModel extends ViewModel {
     public void setValue(String value) {
         this.value.setValue(value);
     }
- }
+}

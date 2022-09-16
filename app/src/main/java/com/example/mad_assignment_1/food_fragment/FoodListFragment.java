@@ -1,4 +1,4 @@
-package com.example.mad_assignment_1.specials_fragment;
+package com.example.mad_assignment_1.food_fragment;
 
 import android.os.Bundle;
 
@@ -15,11 +15,12 @@ import com.example.mad_assignment_1.databases.food.FoodDBModel;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SpecialsFragment#newInstance} factory method to
+ * Use the {@link FoodListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SpecialsFragment extends Fragment {
+public class FoodListFragment extends Fragment {
     FoodDBModel foodDBModel;
+    String currentRestaurant;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,12 +31,13 @@ public class SpecialsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SpecialsFragment() {
+    public FoodListFragment() {
         // Required empty public constructor
     }
 
-    public SpecialsFragment(FoodDBModel foodDBModel) {
+    public FoodListFragment(FoodDBModel foodDBModel, String currentRestaurant) {
         this.foodDBModel = foodDBModel;
+        this.currentRestaurant = currentRestaurant;
     }
 
     /**
@@ -44,11 +46,11 @@ public class SpecialsFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SpecialsFragment.
+     * @return A new instance of fragment FoodFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SpecialsFragment newInstance(String param1, String param2) {
-        SpecialsFragment fragment = new SpecialsFragment();
+    public static FoodListFragment newInstance(String param1, String param2) {
+        FoodListFragment fragment = new FoodListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,11 +71,11 @@ public class SpecialsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_specials, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.specialsRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        SpecialsAdapter specialsAdapter = new SpecialsAdapter(foodDBModel);
-        recyclerView.setAdapter(specialsAdapter);
+        View view = inflater.inflate(R.layout.fragment_food_list, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.foodRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        FoodAdapter foodAdapter = new FoodAdapter(foodDBModel, currentRestaurant);
+        recyclerView.setAdapter(foodAdapter);
         return view;
     }
 }

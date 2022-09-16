@@ -19,9 +19,6 @@ import com.example.mad_assignment_1.databinding.ActivityCheckOutPageBinding;
 
 public class CheckOutPageActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityCheckOutPageBinding binding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

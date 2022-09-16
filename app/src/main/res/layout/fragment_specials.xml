@@ -4,6 +4,6 @@
     android:id="@+id/specialsRecyclerView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".specials_fragment.SpecialsFragment">
+    tools:context=".specials_fragment.SpecialsListFragment">
 
 </androidx.recyclerview.widget.RecyclerView>
