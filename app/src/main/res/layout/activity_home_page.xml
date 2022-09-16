@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Or Select a Restaurant:"
+            android:text="Or Select from Menu:"
             android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"

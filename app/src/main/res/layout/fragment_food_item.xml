@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/foodItemIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/big_mac_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/foodItemName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/foodItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Big Mac"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/foodItemIcon"
+        app:layout_constraintBottom_toTopOf="@id/foodItemPrice"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/foodItemPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$6.50"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/foodItemName"
+        app:layout_constraintBottom_toTopOf="@id/foodItemDescription"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/foodItemDescription"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Tasty Burger"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/foodItemPrice"
+        app:layout_constraintBottom_toTopOf="@id/foodItemAmount"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/subtractButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/circle_button"
+        android:text="-"
+        app:layout_constraintTop_toBottomOf="@id/foodItemDescription"
+        app:layout_constraintBottom_toTopOf="@id/addToCart"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/foodItemAmount"/>
+
+
+    <EditText
+        android:id="@+id/foodItemAmount"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/foodItemDescription"
+        app:layout_constraintBottom_toTopOf="@id/addToCart"
+        app:layout_constraintLeft_toRightOf="@id/subtractButton"
+        app:layout_constraintRight_toLeftOf="@id/addButton"/>
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/circle_button"
+        android:text="+"
+        app:layout_constraintTop_toBottomOf="@id/foodItemDescription"
+        app:layout_constraintBottom_toTopOf="@id/addToCart"
+        app:layout_constraintLeft_toRightOf="@id/foodItemAmount"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/addToCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="add to cart"
+        app:layout_constraintTop_toBottomOf="@id/foodItemAmount"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

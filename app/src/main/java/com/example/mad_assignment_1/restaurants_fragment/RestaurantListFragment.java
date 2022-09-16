@@ -1,4 +1,4 @@
-package com.example.mad_assignment_1.food_fragment;
+package com.example.mad_assignment_1.restaurants_fragment;
 
 import android.os.Bundle;
 
@@ -11,16 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mad_assignment_1.R;
-import com.example.mad_assignment_1.databases.food.FoodDBModel;
+import com.example.mad_assignment_1.databases.restaurants.RestaurantDBModel;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FoodFragment#newInstance} factory method to
+ * Use the {@link RestaurantListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FoodFragment extends Fragment {
-    FoodDBModel foodDBModel;
-    String currentRestaurant;
+public class RestaurantListFragment extends Fragment {
+    RestaurantDBModel restaurantDBModel;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,13 +30,12 @@ public class FoodFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public FoodFragment() {
+    public RestaurantListFragment() {
         // Required empty public constructor
     }
 
-    public FoodFragment(FoodDBModel foodDBModel, String currentRestaurant) {
-        this.foodDBModel = foodDBModel;
-        this.currentRestaurant = currentRestaurant;
+    public RestaurantListFragment(RestaurantDBModel restaurantDBModel) {
+        this.restaurantDBModel = restaurantDBModel;
     }
 
     /**
@@ -46,11 +44,11 @@ public class FoodFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FoodFragment.
+     * @return A new instance of fragment SelectorFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FoodFragment newInstance(String param1, String param2) {
-        FoodFragment fragment = new FoodFragment();
+    public static RestaurantListFragment newInstance(String param1, String param2) {
+        RestaurantListFragment fragment = new RestaurantListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -71,11 +69,11 @@ public class FoodFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_food, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.foodRecyclerView);
+        View view = inflater.inflate(R.layout.fragment_restaurants, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.restaurantsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        FoodAdapter foodAdapter = new FoodAdapter(foodDBModel, currentRestaurant);
-        recyclerView.setAdapter(foodAdapter);
+        RestaurantAdapter restaurantAdapter = new RestaurantAdapter(restaurantDBModel);
+        recyclerView.setAdapter(restaurantAdapter);
         return view;
     }
 }

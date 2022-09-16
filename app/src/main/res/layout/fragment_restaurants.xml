@@ -4,6 +4,6 @@
     android:id="@+id/restaurantsRecyclerView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".restaurants_fragment.RestaurantFragment">
+    tools:context=".restaurants_fragment.RestaurantListFragment">
 
 </androidx.recyclerview.widget.RecyclerView>

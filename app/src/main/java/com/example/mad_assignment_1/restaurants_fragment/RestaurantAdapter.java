@@ -22,6 +22,7 @@ public class RestaurantAdapter extends Adapter<RestaurantViewHolder> {
 
     public RestaurantAdapter(RestaurantDBModel restaurantDBModel) {
         this.restaurantDBModel = restaurantDBModel;
+        this.restaurantViewModel = new ViewModelProvider(HomePageActivity.getInstance()).get(RestaurantViewModel.class);
     }
 
     @NonNull
@@ -38,8 +39,6 @@ public class RestaurantAdapter extends Adapter<RestaurantViewHolder> {
         ArrayList<Restaurant> restaurants = restaurantDBModel.getAllRestaurants();
         holder.bind(restaurants.get(position));
 
-        restaurantViewModel = new ViewModelProvider(HomePageActivity.getInstance()).get(RestaurantViewModel.class);
-
         holder.restaurantIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,10 +52,6 @@ public class RestaurantAdapter extends Adapter<RestaurantViewHolder> {
                 restaurantViewModel.setValue(restaurants.get(currPosition).getId());
             }
         });
-    }
-
-    private void whenClicked(int position) {
-
     }
 
     @Override
