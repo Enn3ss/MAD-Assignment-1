@@ -13,7 +13,7 @@ public class CartDBCursor extends CursorWrapper
 
     public Cart getCart()
     {
-        int cartId = getInt(getColumnIndex(CartTable.Cols.ID));
+        String cartId = getString(getColumnIndex(CartTable.Cols.ID));
         String items = getString(getColumnIndex(CartTable.Cols.ITEMS));
         double totalAmount = getDouble(getColumnIndex(CartTable.Cols.TOTAL_AMOUNT));
 
