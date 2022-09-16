@@ -13,9 +13,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.mad_assignment_1.databases.carts.CartDBModel;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBModel;
-import com.example.mad_assignment_1.food_fragment.FoodFragment;
-import com.example.mad_assignment_1.restaurants_fragment.RestaurantFragment;
-import com.example.mad_assignment_1.specials_fragment.SpecialsFragment;
+import com.example.mad_assignment_1.food_fragment.FoodListFragment;
+import com.example.mad_assignment_1.restaurants_fragment.RestaurantListFragment;
+import com.example.mad_assignment_1.specials_fragment.SpecialsListFragment;
 
 public class HomePageActivity extends AppCompatActivity {
     private static HomePageActivity instance = null;
@@ -24,7 +24,7 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     private RestaurantViewModel restaurantViewModel;
-    private FoodFragment foodFragment;
+    private FoodViewModel foodViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class HomePageActivity extends AppCompatActivity {
 
         //Create Restaurants ViewModel.
         restaurantViewModel = new ViewModelProvider(this).get(RestaurantViewModel.class);
+        foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
 
         RestaurantDBModel restaurantDBModel = new RestaurantDBModel();
         restaurantDBModel.load(getApplicationContext());
@@ -49,8 +50,8 @@ public class HomePageActivity extends AppCompatActivity {
         CartDBModel cartDBModel = CartDBModel.getInstance();
         cartDBModel.load(getApplicationContext());
 
-        SpecialsFragment specialsFragment = new SpecialsFragment(foodDBModel);
-        RestaurantFragment restaurantFragment = new RestaurantFragment(restaurantDBModel);
+        SpecialsListFragment specialsFragment = new SpecialsListFragment(foodDBModel);
+        RestaurantListFragment restaurantFragment = new RestaurantListFragment(restaurantDBModel);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.specialsFragmentContainer, specialsFragment).commit();
@@ -80,11 +81,20 @@ public class HomePageActivity extends AppCompatActivity {
 
         restaurantViewModel.value.observe(this, new Observer<String>() {
             @Override
-            public void onChanged(String string) {
-                if (!string.equals("")) {
-                    foodFragment = new FoodFragment(foodDBModel, string);
-                    fragmentManager.beginTransaction().replace(R.id.menuFragmentContainer, foodFragment).addToBackStack(null).commit();
-                    restaurantViewModel.setValue("");
+            public void onChanged(String value) {
+                if (!value.equals("")) {
+                    FoodListFragment foodListFragment = new FoodListFragment(foodDBModel, value);
+                    fragmentManager.beginTransaction().replace(R.id.menuFragmentContainer, foodListFragment).addToBackStack(null).commit();
+                }
+            }
+        });
+
+        foodViewModel.value.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String value) {
+                if (!value.equals("")) {
+                    FoodItemFragment foodItemFragment = new FoodItemFragment(foodDBModel, value);
+                    fragmentManager.beginTransaction().replace(R.id.menuFragmentContainer, foodItemFragment).addToBackStack(null).commit();
                 }
             }
         });

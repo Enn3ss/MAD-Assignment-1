@@ -11,6 +11,15 @@
         android:id="@+id/recView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        android:alpha="1"/>
+
+    <TextView
+        android:id="@+id/cartIsEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Cart is empty."
+        android:gravity="center"
+        android:alpha="1"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

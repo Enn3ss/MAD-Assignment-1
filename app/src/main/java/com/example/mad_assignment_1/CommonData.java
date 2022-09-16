@@ -19,6 +19,20 @@ public class CommonData {
         guestCart.setTotalAmount(input);
     }
 
+    public static int getCartSize() {
+        int count = 0;
+        String[] items = guestCart.getItems().split(",");
+
+        for (int i = 0; i < items.length; i++) {
+            count += 1;
+        }
+        return count;
+    }
+
+    public static boolean isCartEmpty() {
+        return guestCart.isCartEmpty();
+    }
+
     public static Customer getCustomer() {
         return currentCustomer;
     }

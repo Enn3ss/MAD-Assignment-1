@@ -3,6 +3,7 @@ package com.example.mad_assignment_1.cart_recycler_view;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,13 +15,11 @@ import com.example.mad_assignment_1.databases.carts.CartDBModel;
 import com.example.mad_assignment_1.databases.food.Food;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemViewHolder>
 {
     CartDBModel cartDBModel;
     FoodDBModel foodDBModel;
+    RecyclerView recyclerView;
 
     public CartItemAdapter(CartDBModel cartDBModel, FoodDBModel foodDBModel)
     {
@@ -40,17 +39,39 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemViewHolder>
     @Override
     public void onBindViewHolder(@NonNull CartItemViewHolder holder, int position)
     {
+        int currPosition = position;
         Cart cart = CommonData.getCart();
+        String[] items = cart.getItems().split(",");
 
-        String items = cart.getItems();
-        String[] foods = items.split(",");
-        holder.bind(foodDBModel.getFoodById(foods[position]));
-        //holder.bind(new Food("2", "food", 50.0, "yum yum", "2", R.drawable.brownie_icon));
+        System.out.println(items[position]);
+
+        if (!items[position].equals("")) {
+            Food food = foodDBModel.getFoodById(items[position]);
+            holder.bind(food);
+
+            holder.removeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    cart.removeFood(food.getId());
+                    notifyItemRemoved(currPosition);
+                    notifyItemRangeChanged(currPosition, CommonData.getCartSize());
+                    recyclerView.setAlpha(0);
+                    recyclerView.findViewById(R.id.cartIsEmpty).setAlpha(1);
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+
+        this.recyclerView = recyclerView;
     }
 
     @Override
     public int getItemCount()
     {
-        return 3;
+        return CommonData.getCartSize();
     }
 }

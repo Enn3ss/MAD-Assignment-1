@@ -15,7 +15,6 @@ public class CartItemViewHolder extends RecyclerView.ViewHolder
 {
     public ImageView foodIconImage;
     public TextView foodNameTextBox;
-    public Button editButton;
     public Button removeButton;
 
     public CartItemViewHolder(@NonNull View itemView)
@@ -24,7 +23,6 @@ public class CartItemViewHolder extends RecyclerView.ViewHolder
 
         foodIconImage = (ImageView) itemView.findViewById(R.id.icon);
         foodNameTextBox = (TextView) itemView.findViewById(R.id.name);
-        editButton = (Button) itemView.findViewById(R.id.edit);
         removeButton = (Button) itemView.findViewById(R.id.remove);
     }
 
