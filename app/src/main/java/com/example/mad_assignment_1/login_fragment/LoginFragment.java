@@ -86,10 +86,11 @@ public class LoginFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                if(customerDBModel.doesCustomerExist(emailEditText.getText().toString())) //if the customer exists
+                if(customerDBModel.doesCustomerExist(emailEditText.getText().toString(), passwordEditText.getText().toString())) // If the customer exists
                 {
-                    Customer newCustomer = new Customer(emailEditText.getText().toString(), passwordEditText.getText().toString(), "cartId");
-                    customerDBModel.addCustomer(newCustomer);
+                    Customer newCustomer = customerDBModel.getCustomer(emailEditText.getText().toString());
+                    // Get customer's cart from database and set food items that is currently being stored in CommonData (guest cart)
+                    cartDBModel.getCartById(newCustomer.getCartId()).setFoodItems(CommonData.getCart().getItems());
                     CommonData.setCurrentCustomer(newCustomer);
                     Toast.makeText(getActivity(), "You have successfully logged in!", Toast.LENGTH_SHORT).show();
                     getActivity().onBackPressed();
@@ -106,9 +107,9 @@ public class LoginFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                if(customerDBModel.doesCustomerExist(emailEditText.getText().toString())) //if the customer exists
+                if(customerDBModel.doesCustomerExist(emailEditText.getText().toString())) // If the customer exists
                 {
-                    Toast.makeText(getActivity(), "An account with these credentials already exists!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "An account with this email already exists!", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {

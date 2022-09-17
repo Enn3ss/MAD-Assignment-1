@@ -89,4 +89,57 @@ public class CustomerDBModel
 
         return false;
     }
+
+    public boolean doesCustomerExist(String email, String password)
+    {
+        String searchQuery =
+                "SELECT * " +
+                 "FROM " + customerTable.NAME + " " +
+                 "WHERE " + customerTable.Cols.EMAIL + " = '" + email + "' " +
+                 "AND " + customerTable.Cols.PASSWORD + " = '" + password + "';";
+
+        Cursor cursor = database.rawQuery(searchQuery, null);
+        CustomerDBCursor customerDBCursor = new CustomerDBCursor(cursor);
+
+        try
+        {
+            customerDBCursor.moveToFirst();
+            while(!customerDBCursor.isAfterLast())
+            {
+                return true;
+            }
+        }
+        finally
+        {
+            customerDBCursor.close();
+        }
+
+        return false;
+    }
+
+    public Customer getCustomer(String email)
+    {
+        String searchQuery =
+                "SELECT * " +
+                "FROM " + customerTable.NAME + " " +
+                "WHERE " + customerTable.Cols.EMAIL + " = '" + email + "';";
+
+        Cursor cursor = database.rawQuery(searchQuery, null);
+        CustomerDBCursor customerDBCursor = new CustomerDBCursor(cursor);
+
+        try
+        {
+            customerDBCursor.moveToFirst();
+            while(!customerDBCursor.isAfterLast())
+            {
+                return customerDBCursor.getCustomer();
+            }
+        }
+        finally
+        {
+            customerDBCursor.close();
+        }
+
+        return null;
+    }
 }

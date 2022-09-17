@@ -79,8 +79,15 @@ public class HomePageActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CommonData.setCurrentCustomer(null);
-                Toast.makeText(HomePageActivity.this, "You have logged out!", Toast.LENGTH_SHORT).show();
+                if(CommonData.getCustomer() == null)
+                {
+                    Toast.makeText(HomePageActivity.this, "You are not logged in!", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    CommonData.setCurrentCustomer(null);
+                    Toast.makeText(HomePageActivity.this, "You have logged out!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

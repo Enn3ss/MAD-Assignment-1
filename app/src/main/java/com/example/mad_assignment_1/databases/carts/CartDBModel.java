@@ -131,11 +131,6 @@ public class CartDBModel
         return null;
     }
 
-    public String getNewId()
-    {
-        return "";
-    }
-
     public int getSize()
     {
         return (int) DatabaseUtils.queryNumEntries(db, CartTable.NAME);
