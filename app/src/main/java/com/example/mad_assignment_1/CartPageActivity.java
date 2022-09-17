@@ -30,7 +30,7 @@ public class CartPageActivity extends AppCompatActivity
 
         RecyclerView rv = findViewById(R.id.recView);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        CartItemAdapter adapter = new CartItemAdapter(cartDBModel, foodDBModel);
+        CartItemAdapter adapter = new CartItemAdapter(cartDBModel, foodDBModel, rv, cartIsEmpty);
         rv.setAdapter(adapter);
 
         if (CommonData.isCartEmpty()) {

@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mad_assignment_1.CartPageActivity;
 import com.example.mad_assignment_1.CommonData;
 import com.example.mad_assignment_1.R;
 import com.example.mad_assignment_1.databases.carts.Cart;
@@ -15,16 +16,24 @@ import com.example.mad_assignment_1.databases.carts.CartDBModel;
 import com.example.mad_assignment_1.databases.food.Food;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemViewHolder>
 {
     CartDBModel cartDBModel;
     FoodDBModel foodDBModel;
     RecyclerView recyclerView;
+    TextView cartIsEmpty;
 
-    public CartItemAdapter(CartDBModel cartDBModel, FoodDBModel foodDBModel)
+    public CartItemAdapter(CartDBModel cartDBModel, FoodDBModel foodDBModel, RecyclerView recyclerView, TextView cartIsEmpty)
     {
         this.cartDBModel = cartDBModel;
         this.foodDBModel = foodDBModel;
+        this.recyclerView = recyclerView;
+        this.cartIsEmpty = cartIsEmpty;
     }
 
     @NonNull
@@ -41,12 +50,10 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemViewHolder>
     {
         int currPosition = position;
         Cart cart = CommonData.getCart();
-        String[] items = cart.getItems().split(",");
+        ArrayList<String> items = new ArrayList<>(Arrays.asList(cart.getItems().split(",")));
 
-        System.out.println(items[position]);
-
-        if (!items[position].equals("")) {
-            Food food = foodDBModel.getFoodById(items[position]);
+        if (!items.get(position).equals("")) {
+            Food food = foodDBModel.getFoodById(items.get(position));
             holder.bind(food);
 
             holder.removeButton.setOnClickListener(new View.OnClickListener() {
@@ -54,19 +61,14 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemViewHolder>
                 public void onClick(View view) {
                     cart.removeFood(food.getId());
                     notifyItemRemoved(currPosition);
-                    notifyItemRangeChanged(currPosition, CommonData.getCartSize());
-                    recyclerView.setAlpha(0);
-                    recyclerView.findViewById(R.id.cartIsEmpty).setAlpha(1);
+                    //notifyItemRangeChanged(currPosition, CommonData.getCartSize());
+                    if (cart.getItems().equals("")) {
+                        recyclerView.setAlpha(0);
+                        cartIsEmpty.setAlpha(1);
+                    }
                 }
             });
         }
-    }
-
-    @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
-
-        this.recyclerView = recyclerView;
     }
 
     @Override
