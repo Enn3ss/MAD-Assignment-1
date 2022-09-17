@@ -110,7 +110,7 @@ public class CartDBModel
         String searchQuery =
                 "SELECT * " +
                 "FROM " + CartTable.NAME + " " +
-                "WHERE " + CartTable.Cols.ID + " = " + cartId;
+                "WHERE " + CartTable.Cols.ID + " = " + "'" + cartId + "';";
 
         Cursor cursor = db.rawQuery(searchQuery, null);
         CartDBCursor cartDBCursor = new CartDBCursor(cursor);

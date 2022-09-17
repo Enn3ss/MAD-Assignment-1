@@ -15,6 +15,7 @@ import com.example.mad_assignment_1.databases.customers.CustomerDBModel;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBModel;
 import com.example.mad_assignment_1.food_fragment.FoodListFragment;
+import com.example.mad_assignment_1.food_item_fragment.FoodItemFragment;
 import com.example.mad_assignment_1.restaurants_fragment.RestaurantListFragment;
 import com.example.mad_assignment_1.specials_fragment.SpecialsListFragment;
 

@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.widget.TextView;
 
 import com.example.mad_assignment_1.cart_recycler_view.CartItemAdapter;
@@ -35,16 +34,7 @@ public class CartPageActivity extends AppCompatActivity
         CartItemAdapter adapter = new CartItemAdapter(cartDBModel, foodDBModel, rv, cartIsEmpty);
         rv.setAdapter(adapter);
 
-        Cart cart;
-
-        if (CommonData.getCustomer() == null) { //if no customer is logged in (guest)
-            System.out.println("if " + CommonData.getCart().getCartId());
-            cart = CommonData.getCart();
-        }
-        else { //if customer is logged in
-            System.out.println("else " + CommonData.getCustomer().getCartId());
-            cart = cartDBModel.getCartById(CommonData.getCustomer().getCartId());
-        }
+        Cart cart = CommonData.getCurrentCart();
 
         if (cart.isCartEmpty()) {
             rv.setAlpha(0);

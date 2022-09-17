@@ -38,7 +38,7 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutViewHolder>
     @Override
     public void onBindViewHolder(@NonNull CheckoutViewHolder holder, int position)
     {
-        Cart cart = CommonData.getCart();
+        Cart cart = CommonData.getCurrentCart();
         ArrayList<String> items = new ArrayList<>(Arrays.asList(cart.getItems().split(",")));
 
         if (!items.get(position).equals(""))

@@ -88,10 +88,9 @@ public class LoginFragment extends Fragment
             {
                 if(customerDBModel.doesCustomerExist(emailEditText.getText().toString(), passwordEditText.getText().toString())) // If the customer exists
                 {
-                    Customer newCustomer = customerDBModel.getCustomer(emailEditText.getText().toString());
-                    // Get customer's cart from database and set food items that is currently being stored in CommonData (guest cart)
-                    cartDBModel.getCartById(newCustomer.getCartId()).setFoodItems(CommonData.getCart().getItems());
-                    CommonData.setCurrentCustomer(newCustomer);
+                    Customer loginCustomer = customerDBModel.getCustomer(emailEditText.getText().toString());
+
+                    CommonData.setCurrentCustomer(loginCustomer);
                     Toast.makeText(getActivity(), "You have successfully logged in!", Toast.LENGTH_SHORT).show();
                     getActivity().onBackPressed();
                 }
@@ -114,14 +113,17 @@ public class LoginFragment extends Fragment
                 else
                 {
                     String newCartId = cartDBModel.getNewCartId();
+
                     Customer newCustomer = new Customer(emailEditText.getText().toString(), passwordEditText.getText().toString(), newCartId);
+                    Cart newCart = new Cart(newCartId, CommonData.getCurrentCart().getItems(), newCustomer.getEmail());
 
-                    Cart newCart = new Cart(newCartId, CommonData.getCart().getItems(), newCustomer.getEmail());
-                    newCart.setFoodItems(CommonData.getCart().getItems());
+                    newCart.setFoodItems(CommonData.getCurrentCart().getItems());
+
                     cartDBModel.addCart(newCart);
-
                     customerDBModel.addCustomer(newCustomer);
+
                     CommonData.setCurrentCustomer(newCustomer);
+
                     Toast.makeText(getActivity(), "You have successfully registered!", Toast.LENGTH_SHORT).show();
                     getActivity().onBackPressed();
                 }

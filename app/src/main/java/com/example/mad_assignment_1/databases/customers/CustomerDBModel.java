@@ -38,6 +38,7 @@ public class CustomerDBModel
         ContentValues cv = new ContentValues();
         cv.put(customerTable.Cols.EMAIL, customer.getEmail());
         cv.put(customerTable.Cols.PASSWORD, customer.getPassword());
+        cv.put(customerTable.Cols.CART_ID, customer.getCartId());
         database.insert(customerTable.NAME, null, cv);
     }
 
