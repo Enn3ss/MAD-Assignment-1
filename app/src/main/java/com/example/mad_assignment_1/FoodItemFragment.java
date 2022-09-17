@@ -16,8 +16,6 @@ import android.widget.Toast;
 import com.example.mad_assignment_1.databases.food.Food;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
 
-import org.w3c.dom.Text;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FoodItemFragment#newInstance} factory method to
@@ -128,7 +126,7 @@ public class FoodItemFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 for (int i = 0; i < Integer.parseInt(foodItemAmount.getText().toString()); i++) {
-                    CommonData.getCart().addFood(food.getId());
+                    CommonData.getCurrentCart().addFood(food.getId());
                 }
                 Toast.makeText(getActivity(), foodItemAmount.getText().toString() + "x " + food.getName() + " has been added to cart", Toast.LENGTH_SHORT).show();
             }

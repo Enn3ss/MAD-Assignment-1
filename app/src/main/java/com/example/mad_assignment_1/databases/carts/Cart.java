@@ -87,4 +87,14 @@ public class Cart
         }
         return isEmpty;
     }
+
+    public int getSize() {
+        int count = 0;
+        String[] itemsArray = items.split(",");
+
+        for (int i = 0; i < itemsArray.length; i++) {
+            count += 1;
+        }
+        return count;
+    }
 }

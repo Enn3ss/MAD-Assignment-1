@@ -1,43 +1,35 @@
 package com.example.mad_assignment_1;
 
 import com.example.mad_assignment_1.databases.carts.Cart;
+import com.example.mad_assignment_1.databases.carts.CartDBModel;
 import com.example.mad_assignment_1.databases.customers.Customer;
+import com.example.mad_assignment_1.databases.customers.CustomerDBModel;
 
 public class CommonData {
-    private static Cart guestCart = new Cart("", "", "");
+    private static Cart currentCart = new Cart("", "", "");
     private static Customer currentCustomer = null; // If null then there is no customer currently logged in
 
-    public static Cart getCart() {
-        return guestCart;
-    }
-
-    public static void addCartItem(String input) {
-        guestCart.addFood(input);
-    }
-
-    public static void setCartTotalPrice(double input) {
-        guestCart.setTotalAmount(input);
+    public static Cart getCurrentCart() {
+        return currentCart;
     }
 
     public static int getCartSize() {
-        int count = 0;
-        String[] items = guestCart.getItems().split(",");
-
-        for (int i = 0; i < items.length; i++) {
-            count += 1;
-        }
-        return count;
-    }
-
-    public static boolean isCartEmpty() {
-        return guestCart.isCartEmpty();
+        return currentCart.getSize();
     }
 
     public static Customer getCustomer() {
         return currentCustomer;
     }
 
-    public static void setCurrentCustomer(Customer input) {
-        currentCustomer = input;
+    public static void setCurrentCustomer(Customer newCustomer) {
+
+        if (newCustomer == null) {
+            currentCustomer = null;
+            currentCart = new Cart("", "", "");
+        }
+        else {
+            currentCustomer = newCustomer;
+            currentCart = CartDBModel.getInstance().getCartById(newCustomer.getCartId());
+        }
     }
 }
