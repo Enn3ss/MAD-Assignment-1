@@ -86,7 +86,7 @@ public class LoginFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                if(customerDBModel.doesCustomerExist(emailEditText.getText().toString(), passwordEditText.getText().toString()))
+                if(customerDBModel.doesCustomerExist(emailEditText.getText().toString(), passwordEditText.getText().toString())) //if the customer exists
                 {
                     Customer newCustomer = new Customer(emailEditText.getText().toString(), passwordEditText.getText().toString(), "cartId");
                     customerDBModel.addCustomer(newCustomer);
@@ -106,7 +106,7 @@ public class LoginFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                if(customerDBModel.doesCustomerExist(emailEditText.getText().toString(), passwordEditText.getText().toString()))
+                if(customerDBModel.doesCustomerExist(emailEditText.getText().toString(), passwordEditText.getText().toString())) //if the customer exists
                 {
                     Toast.makeText(getActivity(), "An account with these credentials already exists!", Toast.LENGTH_SHORT).show();
                 }

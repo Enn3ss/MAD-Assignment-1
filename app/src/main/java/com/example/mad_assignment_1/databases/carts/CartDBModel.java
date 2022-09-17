@@ -81,6 +81,31 @@ public class CartDBModel
         return cartList;
     }
 
+    public int getNewCartId()
+    {
+        int largestId = 0;
+        CartDBCursor cursor = new CartDBCursor(db.query(CartTable.NAME, null, null, null, null, null, null));
+
+        try
+        {
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast())
+            {
+                int currentId = Integer.parseInt(cursor.getCart().getCartId());
+                if (currentId > largestId) {
+                    largestId = currentId;
+                }
+                cursor.moveToNext();
+            }
+        }
+        finally
+        {
+            cursor.close();
+        }
+
+        return largestId;
+    }
+
     public Cart getCartById(String cartId)
     {
         String searchQuery =
