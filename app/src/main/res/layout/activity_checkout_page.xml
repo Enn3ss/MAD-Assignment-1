@@ -4,7 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CheckOutPageActivity">
+    tools:context=".CheckoutPageActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/checkoutRecView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:alpha="1"/>
 
     <FrameLayout
         android:id="@+id/loginFragmentContainer"
@@ -15,5 +22,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
+
+    <Button
+        android:id="@+id/cartButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VIEW CART"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginFragmentContainer"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

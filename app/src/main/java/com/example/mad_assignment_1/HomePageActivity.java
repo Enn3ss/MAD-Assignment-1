@@ -72,7 +72,7 @@ public class HomePageActivity extends AppCompatActivity {
         checkOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(CheckOutPageActivity.getIntent(HomePageActivity.this));
+                startActivity(CheckoutPageActivity.getIntent(HomePageActivity.this));
             }
         });
 
