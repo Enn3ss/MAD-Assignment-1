@@ -25,7 +25,7 @@ public class SpecialsAdapter extends Adapter<SpecialsViewHolder> {
 
     public SpecialsAdapter(FoodDBModel foodDBModel) {
         this.foodDBModel = foodDBModel;
-        this.foods = foodDBModel.getSpecials();
+        this.foods = this.foodDBModel.getSpecials();
         this.foodViewModel = new ViewModelProvider(HomePageActivity.getInstance()).get(FoodViewModel.class);
     }
 

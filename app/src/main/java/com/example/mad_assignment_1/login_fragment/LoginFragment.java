@@ -11,11 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.mad_assignment_1.CartPageActivity;
-import com.example.mad_assignment_1.CheckOutPageActivity;
 import com.example.mad_assignment_1.CommonData;
-import com.example.mad_assignment_1.HomePageActivity;
 import com.example.mad_assignment_1.R;
+import com.example.mad_assignment_1.databases.carts.Cart;
+import com.example.mad_assignment_1.databases.carts.CartDBModel;
 import com.example.mad_assignment_1.databases.customers.Customer;
 import com.example.mad_assignment_1.databases.customers.CustomerDBModel;
 
@@ -76,6 +75,7 @@ public class LoginFragment extends Fragment
     {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         CustomerDBModel customerDBModel = CustomerDBModel.getInstance();
+        CartDBModel cartDBModel = CartDBModel.getInstance();
         EditText emailEditText = (EditText) view.findViewById(R.id.emailEditText);
         EditText passwordEditText = (EditText) view.findViewById(R.id.passwordEditText);
         Button loginButton = (Button) view.findViewById(R.id.loginButton);
@@ -86,7 +86,7 @@ public class LoginFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                if(customerDBModel.doesCustomerExist(emailEditText.getText().toString(), passwordEditText.getText().toString())) //if the customer exists
+                if(customerDBModel.doesCustomerExist(emailEditText.getText().toString())) //if the customer exists
                 {
                     Customer newCustomer = new Customer(emailEditText.getText().toString(), passwordEditText.getText().toString(), "cartId");
                     customerDBModel.addCustomer(newCustomer);
@@ -106,13 +106,17 @@ public class LoginFragment extends Fragment
             @Override
             public void onClick(View view)
             {
-                if(customerDBModel.doesCustomerExist(emailEditText.getText().toString(), passwordEditText.getText().toString())) //if the customer exists
+                if(customerDBModel.doesCustomerExist(emailEditText.getText().toString())) //if the customer exists
                 {
                     Toast.makeText(getActivity(), "An account with these credentials already exists!", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    Customer newCustomer = new Customer(emailEditText.getText().toString(), passwordEditText.getText().toString(), "cartId");
+                    String newCartId = cartDBModel.getNewCartId();
+                    Customer newCustomer = new Customer(emailEditText.getText().toString(), passwordEditText.getText().toString(), newCartId);
+
+                    cartDBModel.addCart(new Cart(newCartId, CommonData.getCart().getItems(), 0.0, newCustomer.getEmail()));
+
                     customerDBModel.addCustomer(newCustomer);
                     CommonData.setCurrentCustomer(newCustomer);
                     Toast.makeText(getActivity(), "You have successfully registered!", Toast.LENGTH_SHORT).show();

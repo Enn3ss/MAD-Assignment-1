@@ -17,7 +17,6 @@ import java.util.List;
 public class CartDBModel
 {
     private static CartDBModel instance = null;
-    private List<Cart> cartList; // The data
     private SQLiteDatabase db; // The database connection
 
     private CartDBModel() {}
@@ -81,9 +80,9 @@ public class CartDBModel
         return cartList;
     }
 
-    public int getNewCartId()
+    public String getNewCartId()
     {
-        int largestId = 0;
+        int largestId = 1;
         CartDBCursor cursor = new CartDBCursor(db.query(CartTable.NAME, null, null, null, null, null, null));
 
         try
@@ -103,7 +102,7 @@ public class CartDBModel
             cursor.close();
         }
 
-        return largestId;
+        return String.valueOf(largestId);
     }
 
     public Cart getCartById(String cartId)

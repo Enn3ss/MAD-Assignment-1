@@ -64,13 +64,12 @@ public class CustomerDBModel
         return customerList;
     }
 
-    public boolean doesCustomerExist(String email, String password)
+    public boolean doesCustomerExist(String email)
     {
         String searchQuery =
                 "SELECT * " +
                 "FROM " + customerTable.NAME + " " +
-                "WHERE " + customerTable.Cols.EMAIL + " = " + "'" + email + "'" +
-                " AND " + customerTable.Cols.PASSWORD + " = " + "'" + password + "';";
+                "WHERE " + customerTable.Cols.EMAIL + " = " + "'" + email + "';";
 
         Cursor cursor = database.rawQuery(searchQuery, null);
         CustomerDBCursor customerDBCursor = new CustomerDBCursor(cursor);

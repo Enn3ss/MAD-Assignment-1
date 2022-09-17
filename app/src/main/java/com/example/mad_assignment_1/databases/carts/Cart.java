@@ -8,14 +8,14 @@ public class Cart
     String cartId;
     String items;
     double totalAmount;
-    String customerId;
+    String customerEmail;
 
     public Cart(String cartId, String items, double totalAmount, String customerId)
     {
         this.cartId = cartId;
         this.items = items;
         this.totalAmount = totalAmount;
-        this.customerId = customerId;
+        this.customerEmail = customerId;
     }
 
     public String getCartId() { return cartId; }
@@ -24,7 +24,7 @@ public class Cart
 
     public double getTotalAmount() { return totalAmount; }
 
-    public String getCustomerId() { return customerId; }
+    public String getCustomerEmail() { return customerEmail; }
 
     public void setCartId(String cartId)
     {
@@ -36,7 +36,11 @@ public class Cart
         this.totalAmount = totalAmount;
     }
 
-    public void setCustomerId(String customerId) { this.customerId = customerId; }
+    public void setCustomerEmail(String customerEmail) { this.customerEmail = customerEmail; }
+
+    public void setFoodItems(String items) {
+        this.items = items;
+    }
 
     public void addFood(String item)
     {
