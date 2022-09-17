@@ -1,5 +1,7 @@
 package com.example.mad_assignment_1.databases.carts;
 
+import com.example.mad_assignment_1.databases.food.FoodDBModel;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -9,6 +11,14 @@ public class Cart
     String items;
     double totalAmount;
     String customerEmail;
+
+    public Cart(String cartId, String items, String customerId)
+    {
+        this.cartId = cartId;
+        this.items = items;
+        this.totalAmount = 0;
+        this.customerEmail = customerId;
+    }
 
     public Cart(String cartId, String items, double totalAmount, String customerId)
     {
@@ -42,14 +52,15 @@ public class Cart
         this.items = items;
     }
 
-    public void addFood(String item)
+    public void addFood(String foodId)
     {
         if (isCartEmpty()) {
-            this.items += item;
+            this.items += foodId;
         }
         else {
-            this.items += "," + item;
+            this.items += "," + foodId;
         }
+        totalAmount += FoodDBModel.getInstance().getFoodById(foodId).getPrice();
     }
 
     public void removeFood(String item) {
@@ -58,17 +69,13 @@ public class Cart
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).equals(item)) {
                     list.remove(i);
-                    arrayToString(list);
                     break;
                 }
             }
-        }
-    }
-
-    private void arrayToString(ArrayList<String> list) {
-        items = "";
-        for (int i = 0; i < list.size(); i++) {
-            addFood(list.get(i));
+            items = "";
+            for (int i = 0; i < list.size(); i++) {
+                addFood(list.get(i));
+            }
         }
     }
 

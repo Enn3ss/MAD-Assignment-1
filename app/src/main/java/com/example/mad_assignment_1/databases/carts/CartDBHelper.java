@@ -21,7 +21,8 @@ public class CartDBHelper extends SQLiteOpenHelper
         db.execSQL("CREATE TABLE " + CartTable.NAME + "(" +
                 CartTable.Cols.ID + " INTEGER, " +
                 CartTable.Cols.ITEMS + " TEXT, " +
-                CartTable.Cols.TOTAL_AMOUNT + "REAL)");
+                CartTable.Cols.TOTAL_AMOUNT + " REAL, " +
+                CartTable.Cols.CUSTOMER_EMAIL + " TEXT)");
     }
 
     @Override

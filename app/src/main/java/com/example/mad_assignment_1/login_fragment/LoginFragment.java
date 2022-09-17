@@ -116,7 +116,9 @@ public class LoginFragment extends Fragment
                     String newCartId = cartDBModel.getNewCartId();
                     Customer newCustomer = new Customer(emailEditText.getText().toString(), passwordEditText.getText().toString(), newCartId);
 
-                    cartDBModel.addCart(new Cart(newCartId, CommonData.getCart().getItems(), 0.0, newCustomer.getEmail()));
+                    Cart newCart = new Cart(newCartId, CommonData.getCart().getItems(), newCustomer.getEmail());
+                    newCart.setFoodItems(CommonData.getCart().getItems());
+                    cartDBModel.addCart(newCart);
 
                     customerDBModel.addCustomer(newCustomer);
                     CommonData.setCurrentCustomer(newCustomer);
@@ -125,7 +127,6 @@ public class LoginFragment extends Fragment
                 }
             }
         });
-
         return view;
     }
 }

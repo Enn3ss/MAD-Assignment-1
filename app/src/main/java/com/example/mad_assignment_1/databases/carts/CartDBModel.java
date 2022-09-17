@@ -42,6 +42,7 @@ public class CartDBModel
         cv.put(CartTable.Cols.ID, cart.getCartId());
         cv.put(CartTable.Cols.ITEMS, cart.getItems());
         cv.put(CartTable.Cols.TOTAL_AMOUNT, cart.getTotalAmount());
+        cv.put(CartTable.Cols.CUSTOMER_EMAIL, cart.getCustomerEmail());
         db.insert(CartTable.NAME, null, cv);
     }
 
@@ -84,7 +85,6 @@ public class CartDBModel
     {
         int largestId = 1;
         CartDBCursor cursor = new CartDBCursor(db.query(CartTable.NAME, null, null, null, null, null, null));
-
         try
         {
             cursor.moveToFirst();
@@ -102,7 +102,7 @@ public class CartDBModel
             cursor.close();
         }
 
-        return String.valueOf(largestId);
+        return String.valueOf(largestId + 1);
     }
 
     public Cart getCartById(String cartId)
