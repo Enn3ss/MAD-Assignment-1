@@ -127,7 +127,9 @@ public class FoodItemFragment extends Fragment {
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CommonData.getCart().addFood(food.getId());
+                for (int i = 0; i < Integer.parseInt(foodItemAmount.getText().toString()); i++) {
+                    CommonData.getCart().addFood(food.getId());
+                }
                 Toast.makeText(getActivity(), foodItemAmount.getText().toString() + "x " + food.getName() + " has been added to cart", Toast.LENGTH_SHORT).show();
             }
         });
