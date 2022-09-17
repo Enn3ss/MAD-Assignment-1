@@ -8,12 +8,14 @@ public class Cart
     String cartId;
     String items;
     double totalAmount;
+    String customerId;
 
-    public Cart(String cartId, String items, double totalAmount)
+    public Cart(String cartId, String items, double totalAmount, String customerId)
     {
         this.cartId = cartId;
         this.items = items;
         this.totalAmount = totalAmount;
+        this.customerId = customerId;
     }
 
     public String getCartId() { return cartId; }
@@ -22,10 +24,19 @@ public class Cart
 
     public double getTotalAmount() { return totalAmount; }
 
+    public String getCustomerId() { return customerId; }
+
     public void setCartId(String cartId)
     {
         this.cartId = cartId;
     }
+
+    public void setTotalAmount(double totalAmount)
+    {
+        this.totalAmount = totalAmount;
+    }
+
+    public void setCustomerId(String customerId) { this.customerId = customerId; }
 
     public void addFood(String item)
     {
@@ -55,11 +66,6 @@ public class Cart
         for (int i = 0; i < list.size(); i++) {
             addFood(list.get(i));
         }
-    }
-
-    public void setTotalAmount(double totalAmount)
-    {
-        this.totalAmount = totalAmount;
     }
 
     public boolean isCartEmpty() {
