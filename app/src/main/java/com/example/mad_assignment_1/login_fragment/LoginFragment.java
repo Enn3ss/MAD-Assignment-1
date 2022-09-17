@@ -95,7 +95,7 @@ public class LoginFragment extends Fragment
                 }
                 else
                 {
-                    Toast.makeText(getActivity(), "These credentials are not registered!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "This account does not exist!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -107,7 +107,7 @@ public class LoginFragment extends Fragment
             {
                 if(customerDBModel.doesCustomerExist(emailEditText.getText().toString(), passwordEditText.getText().toString()))
                 {
-                    Toast.makeText(getActivity(), "These credentials have been registered!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "An account with these credentials already exists!", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {

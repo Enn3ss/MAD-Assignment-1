@@ -74,7 +74,7 @@ public class CustomerDBModel
 
         Cursor cursor = database.rawQuery(searchQuery, null);
         CustomerDBCursor customerDBCursor = new CustomerDBCursor(cursor);
-
+/*
         try
         {
             customerDBCursor.moveToFirst();
@@ -86,7 +86,7 @@ public class CustomerDBModel
         finally
         {
             customerDBCursor.close();
-        }
+        }*/
 
         return false;
     }

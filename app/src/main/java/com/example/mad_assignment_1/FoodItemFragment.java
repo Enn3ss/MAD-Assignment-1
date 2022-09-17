@@ -128,6 +128,7 @@ public class FoodItemFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 CommonData.getCart().addFood(food.getId());
+                Toast.makeText(getActivity(), foodItemAmount.getText().toString() + "x " + food.getName() + " has been added to cart", Toast.LENGTH_SHORT).show();
             }
         });
         return view;
