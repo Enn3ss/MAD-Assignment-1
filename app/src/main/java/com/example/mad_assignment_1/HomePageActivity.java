@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.mad_assignment_1.databases.carts.CartDBModel;
+import com.example.mad_assignment_1.databases.customers.CustomerDBModel;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBModel;
 import com.example.mad_assignment_1.food_fragment.FoodListFragment;
@@ -24,7 +25,11 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     private RestaurantViewModel restaurantViewModel;
+<<<<<<< Updated upstream
     private FoodViewModel foodViewModel;
+=======
+    private FoodListFragment foodFragment;
+>>>>>>> Stashed changes
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,12 @@ public class HomePageActivity extends AppCompatActivity {
         CartDBModel cartDBModel = CartDBModel.getInstance();
         cartDBModel.load(getApplicationContext());
 
+<<<<<<< Updated upstream
+=======
+        CustomerDBModel customerDBModel = CustomerDBModel.getInstance();
+        customerDBModel.load(getApplicationContext());
+
+>>>>>>> Stashed changes
         SpecialsListFragment specialsFragment = new SpecialsListFragment(foodDBModel);
         RestaurantListFragment restaurantFragment = new RestaurantListFragment(restaurantDBModel);
 
@@ -81,6 +92,7 @@ public class HomePageActivity extends AppCompatActivity {
 
         restaurantViewModel.value.observe(this, new Observer<String>() {
             @Override
+<<<<<<< Updated upstream
             public void onChanged(String value) {
                 if (!value.equals("")) {
                     FoodListFragment foodListFragment = new FoodListFragment(foodDBModel, value);
@@ -95,6 +107,13 @@ public class HomePageActivity extends AppCompatActivity {
                 if (!value.equals("")) {
                     FoodItemFragment foodItemFragment = new FoodItemFragment(foodDBModel, value);
                     fragmentManager.beginTransaction().replace(R.id.menuFragmentContainer, foodItemFragment).addToBackStack(null).commit();
+=======
+            public void onChanged(String string) {
+                if (!string.equals("")) {
+                    foodFragment = new FoodListFragment(foodDBModel, string);
+                    fragmentManager.beginTransaction().replace(R.id.menuFragmentContainer, foodFragment).addToBackStack(null).commit();
+                    restaurantViewModel.setValue("");
+>>>>>>> Stashed changes
                 }
             }
         });

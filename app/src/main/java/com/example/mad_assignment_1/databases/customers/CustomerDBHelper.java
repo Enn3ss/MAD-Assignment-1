@@ -20,8 +20,6 @@ public class CustomerDBHelper extends SQLiteOpenHelper {
     public void onCreate(@NonNull SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(
             "CREATE TABLE " + customerTable.NAME + "(" +
-                    customerTable.Cols.ID + " TEXT, " +
-                    customerTable.Cols.FULLNAME + " TEXT, " +
                     customerTable.Cols.EMAIL + " TEXT, " +
                     customerTable.Cols.PASSWORD + " TEXT, " +
                     customerTable.Cols.CART_ID + " TEXT);"

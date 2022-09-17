@@ -11,11 +11,9 @@ public class CustomerDBCursor extends CursorWrapper {
     }
 
     public Customer getCustomer() {
-        String id = getString(getColumnIndex(customerTable.Cols.ID));
-        String fullName = getString(getColumnIndex(customerTable.Cols.FULLNAME));
         String email = getString(getColumnIndex(customerTable.Cols.EMAIL));
         String password = getString(getColumnIndex(customerTable.Cols.PASSWORD));
         String cartId = getString(getColumnIndex(customerTable.Cols.CART_ID));
-        return new Customer(id, fullName, email, password, cartId);
+        return new Customer(email, password, cartId);
     }
 }

@@ -7,8 +7,17 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.mad_assignment_1.CartPageActivity;
+import com.example.mad_assignment_1.CheckOutPageActivity;
+import com.example.mad_assignment_1.CommonData;
+import com.example.mad_assignment_1.HomePageActivity;
 import com.example.mad_assignment_1.R;
+import com.example.mad_assignment_1.databases.customers.Customer;
+import com.example.mad_assignment_1.databases.customers.CustomerDBModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,10 +72,53 @@ public class LoginFragment extends Fragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        CustomerDBModel customerDBModel = CustomerDBModel.getInstance();
+        EditText emailEditText = (EditText) view.findViewById(R.id.emailEditText);
+        EditText passwordEditText = (EditText) view.findViewById(R.id.passwordEditText);
+        Button loginButton = (Button) view.findViewById(R.id.loginButton);
+        Button registerButton = (Button) view.findViewById(R.id.registerButton);
+
+        loginButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(customerDBModel.doesCustomerExist(emailEditText.getText().toString(), passwordEditText.getText().toString()))
+                {
+                    Customer newCustomer = new Customer(emailEditText.getText().toString(), passwordEditText.getText().toString(), "cartId");
+                    customerDBModel.addCustomer(newCustomer);
+                    CommonData.setCurrentCustomer(newCustomer);
+                    Toast.makeText(getActivity(), "You have successfully logged in!", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(getActivity(), "These credentials are not registered!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        registerButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(customerDBModel.doesCustomerExist(emailEditText.getText().toString(), passwordEditText.getText().toString()))
+                {
+                    Toast.makeText(getActivity(), "These credentials have been registered!", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Customer newCustomer = new Customer(emailEditText.getText().toString(), passwordEditText.getText().toString(), "cartId");
+                    customerDBModel.addCustomer(newCustomer);
+                    CommonData.setCurrentCustomer(newCustomer);
+                    Toast.makeText(getActivity(), "You have successfully registered!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        return view;
     }
 }

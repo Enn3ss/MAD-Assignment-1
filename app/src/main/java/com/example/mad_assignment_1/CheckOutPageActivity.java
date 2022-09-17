@@ -4,20 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.mad_assignment_1.login_fragment.LoginFragment;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
-
 import androidx.fragment.app.FragmentManager;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
-import com.example.mad_assignment_1.databinding.ActivityCheckOutPageBinding;
+import com.example.mad_assignment_1.login_fragment.LoginFragment;
+
 
 public class CheckOutPageActivity extends AppCompatActivity
 {

@@ -6,8 +6,6 @@ public class CustomerDBSchema {
         public static final String NAME = "customers";
         //COLUMNS
         public static class Cols {
-            public static final String ID = "id";
-            public static final String FULLNAME = "fullname";
             public static final String EMAIL = "email";
             public static final String PASSWORD = "password";
             public static final String CART_ID = "cart_id";
