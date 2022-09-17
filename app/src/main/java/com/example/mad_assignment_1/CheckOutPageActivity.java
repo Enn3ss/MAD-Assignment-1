@@ -19,7 +19,7 @@ public class CheckOutPageActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_out_page);
 
-        if(CommonData.getCustomer() == null)
+        if(CommonData.getCustomer() == null) // Check if customer is already logged in
         {
             FragmentManager fm = getSupportFragmentManager();
             LoginFragment loginFragment = (LoginFragment) fm.findFragmentById(R.id.loginFragmentContainer);

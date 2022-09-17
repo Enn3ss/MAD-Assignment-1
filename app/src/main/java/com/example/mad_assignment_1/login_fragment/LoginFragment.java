@@ -92,7 +92,7 @@ public class LoginFragment extends Fragment
                     customerDBModel.addCustomer(newCustomer);
                     CommonData.setCurrentCustomer(newCustomer);
                     Toast.makeText(getActivity(), "You have successfully logged in!", Toast.LENGTH_SHORT).show();
-                    getActivity().getSupportFragmentManager().popBackStack();
+                    getActivity().onBackPressed();
                 }
                 else
                 {
@@ -116,6 +116,7 @@ public class LoginFragment extends Fragment
                     customerDBModel.addCustomer(newCustomer);
                     CommonData.setCurrentCustomer(newCustomer);
                     Toast.makeText(getActivity(), "You have successfully registered!", Toast.LENGTH_SHORT).show();
+                    getActivity().onBackPressed();
                 }
             }
         });
