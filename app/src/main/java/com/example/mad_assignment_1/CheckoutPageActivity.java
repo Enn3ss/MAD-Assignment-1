@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -17,6 +19,7 @@ import com.example.mad_assignment_1.login_fragment.LoginFragment;
 
 public class CheckoutPageActivity extends AppCompatActivity
 {
+    private Button purchaseButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -24,8 +27,11 @@ public class CheckoutPageActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout_page);
 
+        purchaseButton = (Button) findViewById(R.id.purchaseButton);
+
         if(CommonData.getCustomer() == null) // Check if customer is already logged in
         {
+            purchaseButton.setAlpha(0);
             FragmentManager fm = getSupportFragmentManager();
             LoginFragment loginFragment = (LoginFragment) fm.findFragmentById(R.id.loginFragmentContainer);
 
