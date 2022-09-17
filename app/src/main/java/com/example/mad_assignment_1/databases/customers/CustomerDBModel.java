@@ -69,12 +69,12 @@ public class CustomerDBModel
         String searchQuery =
                 "SELECT * " +
                 "FROM " + customerTable.NAME + " " +
-                "WHERE " + customerTable.Cols.EMAIL + " = " + email +
-                " AND " + customerTable.Cols.PASSWORD + " = " + password;
+                "WHERE " + customerTable.Cols.EMAIL + " = " + "'" + email + "'" +
+                " AND " + customerTable.Cols.PASSWORD + " = " + "'" + password + "';";
 
         Cursor cursor = database.rawQuery(searchQuery, null);
         CustomerDBCursor customerDBCursor = new CustomerDBCursor(cursor);
-/*
+
         try
         {
             customerDBCursor.moveToFirst();
@@ -86,7 +86,7 @@ public class CustomerDBModel
         finally
         {
             customerDBCursor.close();
-        }*/
+        }
 
         return false;
     }
