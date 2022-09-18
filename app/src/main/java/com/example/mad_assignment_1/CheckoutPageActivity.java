@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -47,6 +49,24 @@ public class CheckoutPageActivity extends AppCompatActivity
         FoodDBModel foodDBModel = FoodDBModel.getInstance();
         CheckoutAdapter adapter = new CheckoutAdapter(foodDBModel);
         rv.setAdapter(adapter);
+
+        purchaseButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                if(CommonData.isCartEmpty()) // User cannot make purchase if cart is empty
+                {
+                    Toast.makeText(getApplicationContext(), "Cannot make purchase on empty cart!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "Purchase made. Your order is on its way!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+        });
     }
 
     public static Intent getIntent(Context context)

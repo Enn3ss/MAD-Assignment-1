@@ -32,4 +32,8 @@ public class CommonData {
             currentCart = CartDBModel.getInstance().getCartById(newCustomer.getCartId());
         }
     }
+
+    public static boolean isCartEmpty() {
+        return currentCart.isCartEmpty();
+    }
 }
