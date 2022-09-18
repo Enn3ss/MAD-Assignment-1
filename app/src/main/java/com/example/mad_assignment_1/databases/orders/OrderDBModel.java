@@ -16,35 +16,55 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-public class OrderDBModel {
-    SQLiteDatabase database;
+public class OrderDBModel
+{
+    private static OrderDBModel instance = null;
+    private SQLiteDatabase database;
 
-    public void load(Context context) {
+    private OrderDBModel() {}
+
+    public static OrderDBModel getInstance()
+    {
+        if(instance == null)
+        {
+            instance = new OrderDBModel();
+        }
+
+        return instance;
+    }
+
+    public void load(Context context)
+    {
         this.database = new OrderDBHelper(context).getWritableDatabase();
     }
 
-    public void addOrder(@NonNull Order order) {
+    public void addOrder(@NonNull Order order)
+    {
         ContentValues cv = new ContentValues();
         cv.put(orderTable.Cols.CUSTOMER_ID, order.getCustomerId());
         cv.put(orderTable.Cols.TIME, order.getTime());
-        cv.put(orderTable.Cols.TOTAL_COST, order.getTotalCost());
-        cv.put(orderTable.Cols.FOOD_LIST, order.getFoodList());
+        cv.put(orderTable.Cols.DATE, order.getDate());
+        cv.put(orderTable.Cols.CART_ID, order.getCartId());
         database.insert(orderTable.NAME, null, cv);
     }
 
-    public ArrayList<Order> getAllOrders() {
+    public ArrayList<Order> getAllOrders()
+    {
         ArrayList<Order> orderList = new ArrayList<>();
         Cursor cursor = database.query(orderTable.NAME, null, null, null, null, null, null);
         OrderDBCursor orderDBCursor = new OrderDBCursor(cursor);
 
-        try {
+        try
+        {
             orderDBCursor.moveToFirst();
-            while (!orderDBCursor.isAfterLast()) {
+            while (!orderDBCursor.isAfterLast())
+            {
                 orderList.add(orderDBCursor.getOrder());
                 orderDBCursor.moveToNext();
             }
         }
-        finally {
+        finally
+        {
             cursor.close();
         }
         return orderList;

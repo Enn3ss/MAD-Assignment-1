@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.mad_assignment_1.databases.carts.CartDBModel;
 import com.example.mad_assignment_1.databases.customers.CustomerDBModel;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
+import com.example.mad_assignment_1.databases.orders.OrderDBModel;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBModel;
 import com.example.mad_assignment_1.food_fragment.FoodListFragment;
 import com.example.mad_assignment_1.food_item_fragment.FoodItemFragment;
@@ -55,6 +56,9 @@ public class HomePageActivity extends AppCompatActivity {
 
         CustomerDBModel customerDBModel = CustomerDBModel.getInstance();
         customerDBModel.load(getApplicationContext());
+
+        OrderDBModel orderDBModel = OrderDBModel.getInstance();
+        orderDBModel.load(getApplicationContext());
 
         SpecialsListFragment specialsFragment = new SpecialsListFragment(foodDBModel);
         RestaurantListFragment restaurantFragment = new RestaurantListFragment(restaurantDBModel);

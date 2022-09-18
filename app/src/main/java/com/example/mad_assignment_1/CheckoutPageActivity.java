@@ -15,8 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mad_assignment_1.checkout_recycler_view.CheckoutAdapter;
+import com.example.mad_assignment_1.databases.carts.Cart;
+import com.example.mad_assignment_1.databases.carts.CartDBModel;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
+import com.example.mad_assignment_1.databases.orders.Order;
+import com.example.mad_assignment_1.databases.orders.OrderDBModel;
 import com.example.mad_assignment_1.login_fragment.LoginFragment;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class CheckoutPageActivity extends AppCompatActivity
@@ -47,6 +54,8 @@ public class CheckoutPageActivity extends AppCompatActivity
         RecyclerView rv = findViewById(R.id.checkoutRecView);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         FoodDBModel foodDBModel = FoodDBModel.getInstance();
+        OrderDBModel orderDBModel = OrderDBModel.getInstance();
+        CartDBModel cartDBModel = CartDBModel.getInstance();
         CheckoutAdapter adapter = new CheckoutAdapter(foodDBModel);
         rv.setAdapter(adapter);
 
@@ -58,13 +67,19 @@ public class CheckoutPageActivity extends AppCompatActivity
                 if(CommonData.isCartEmpty()) // User cannot make purchase if cart is empty
                 {
                     Toast.makeText(getApplicationContext(), "Cannot make purchase on empty cart!", Toast.LENGTH_SHORT).show();
-                    finish();
                 }
                 else
                 {
+                    String time = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+                    String date = new SimpleDateFormat("HH:mm:ss").format(new Date());
+                    Order order = new Order(CommonData.getCustomer().getEmail(), time, date, CommonData.getCurrentCart().getCartId());
+                    orderDBModel.addOrder(order);
+                    Cart newCart = new Cart(cartDBModel.getNewCartId(), "", CommonData.getCustomer().getEmail());
+                    cartDBModel.addCart(newCart);
+                    CommonData.resetCart();
                     Toast.makeText(getApplicationContext(), "Purchase made. Your order is on its way!", Toast.LENGTH_SHORT).show();
-                    finish();
                 }
+                finish();
             }
         });
     }

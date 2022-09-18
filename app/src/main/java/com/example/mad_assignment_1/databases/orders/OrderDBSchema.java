@@ -8,8 +8,8 @@ public class OrderDBSchema {
         public static class Cols {
             public static final String CUSTOMER_ID = "customerId";
             public static final String TIME = "time";
-            public static final String TOTAL_COST = "totalCost";
-            public static final String FOOD_LIST = "foodList";
+            public static final String DATE = "date";
+            public static final String CART_ID = "cart_id";
         }
     }
 }

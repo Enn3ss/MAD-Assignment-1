@@ -36,4 +36,9 @@ public class CommonData {
     public static boolean isCartEmpty() {
         return currentCart.isCartEmpty();
     }
+
+    // Once a customer "makes purchase" their cart will reset and be empty again
+    public static void resetCart() {
+        currentCart = CartDBModel.getInstance().getCartById(currentCustomer.getCartId());
+    }
 }

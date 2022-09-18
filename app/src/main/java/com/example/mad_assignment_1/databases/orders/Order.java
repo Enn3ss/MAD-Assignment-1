@@ -3,14 +3,14 @@ package com.example.mad_assignment_1.databases.orders;
 public class Order {
     String customerId;
     String time;
-    double totalCost;
-    String foodList;
+    String date;
+    String cartId;
 
-    public Order(String customerId, String time, double totalCost, String foodList) {
+    public Order(String customerId, String time, String date, String cartId) {
         this.customerId = customerId;
         this.time = time;
-        this.totalCost = totalCost;
-        this.foodList = foodList;
+        this.date = date;
+        this.cartId = cartId;
     }
 
     public String getCustomerId() {
@@ -29,19 +29,19 @@ public class Order {
         this.time = time;
     }
 
-    public double getTotalCost() {
-        return totalCost;
+    public String getDate() {
+        return date;
     }
 
-    public void setTotalCost(double totalCost) {
-        this.totalCost = totalCost;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public String getFoodList() {
-        return foodList;
+    public String getCartId() {
+        return cartId;
     }
 
-    public void setFoodList(String foodList) {
-        this.foodList = foodList;
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
     }
 }

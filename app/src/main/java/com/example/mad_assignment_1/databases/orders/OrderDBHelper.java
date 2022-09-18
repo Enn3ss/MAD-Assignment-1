@@ -22,8 +22,8 @@ public class OrderDBHelper extends SQLiteOpenHelper {
             "create table " + orderTable.NAME + "(" +
                     orderTable.Cols.CUSTOMER_ID + " TEXT, " +
                     orderTable.Cols.TIME + " TEXT, " +
-                    orderTable.Cols.TOTAL_COST + " REAL, " +
-                    orderTable.Cols.FOOD_LIST + " TEXT);"
+                    orderTable.Cols.DATE + " TEXT, " +
+                    orderTable.Cols.CART_ID + " TEXT);"
             );
     }
 

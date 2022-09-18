@@ -19,8 +19,8 @@ public class OrderDBCursor extends CursorWrapper {
     public Order getOrder() {
         String customerId = getString(getColumnIndex(orderTable.Cols.CUSTOMER_ID));
         String time = getString(getColumnIndex(orderTable.Cols.TIME));
-        Double totalCost = getDouble(getColumnIndex(orderTable.Cols.TOTAL_COST));
-        String foodList = getString(getColumnIndex(orderTable.Cols.FOOD_LIST));
-        return new Order(customerId, time, totalCost, foodList);
+        String date = getString(getColumnIndex(orderTable.Cols.DATE));
+        String cartId = getString(getColumnIndex(orderTable.Cols.CART_ID));
+        return new Order(customerId, time, date, cartId);
     }
 }
