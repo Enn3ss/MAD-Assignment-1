@@ -38,7 +38,7 @@ public class CommonData {
     }
 
     // Once a customer "makes purchase" their cart will reset and be empty again
-    public static void resetCart() {
+    public static void updateCart() {
         currentCart = CartDBModel.getInstance().getCartById(currentCustomer.getCartId());
     }
 }

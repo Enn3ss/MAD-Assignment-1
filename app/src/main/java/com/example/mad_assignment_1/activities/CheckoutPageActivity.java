@@ -76,7 +76,9 @@ public class CheckoutPageActivity extends AppCompatActivity
                     orderDBModel.addOrder(order);
                     Cart newCart = new Cart(cartDBModel.getNewCartId(), "", CommonData.getCustomer().getEmail());
                     cartDBModel.addCart(newCart);
-                    CommonData.resetCart();
+                    CommonData.getCustomer().setCartId(newCart.getCartId());
+                    CommonData.updateCart();
+
                     Toast.makeText(getApplicationContext(), "Purchase made. Your order is on its way!", Toast.LENGTH_SHORT).show();
                 }
                 finish();
