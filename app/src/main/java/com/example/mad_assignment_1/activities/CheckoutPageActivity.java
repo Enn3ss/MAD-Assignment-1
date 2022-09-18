@@ -1,19 +1,23 @@
-package com.example.mad_assignment_1;
+package com.example.mad_assignment_1.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+<<<<<<< Updated upstream:app/src/main/java/com/example/mad_assignment_1/CheckoutPageActivity.java
 import android.widget.TextView;
 import android.widget.Toast;
+=======
+>>>>>>> Stashed changes:app/src/main/java/com/example/mad_assignment_1/activities/CheckoutPageActivity.java
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mad_assignment_1.CommonData;
+import com.example.mad_assignment_1.R;
 import com.example.mad_assignment_1.checkout_recycler_view.CheckoutAdapter;
 import com.example.mad_assignment_1.databases.carts.Cart;
 import com.example.mad_assignment_1.databases.carts.CartDBModel;

@@ -1,4 +1,4 @@
-package com.example.mad_assignment_1.cart_recycler_view;
+package com.example.mad_assignment_1.cart_fragments.current_cart;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import com.example.mad_assignment_1.CommonData;
 import com.example.mad_assignment_1.R;
@@ -18,14 +19,14 @@ import com.example.mad_assignment_1.databases.food.FoodDBModel;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CartItemAdapter extends RecyclerView.Adapter<CartItemViewHolder>
+public class CurrentCartAdapter extends Adapter<CurrentCartViewHolder>
 {
     CartDBModel cartDBModel;
     FoodDBModel foodDBModel;
     RecyclerView recyclerView;
     TextView cartIsEmpty;
 
-    public CartItemAdapter(CartDBModel cartDBModel, FoodDBModel foodDBModel, RecyclerView recyclerView, TextView cartIsEmpty)
+    public CurrentCartAdapter(CartDBModel cartDBModel, FoodDBModel foodDBModel, RecyclerView recyclerView, TextView cartIsEmpty)
     {
         this.cartDBModel = cartDBModel;
         this.foodDBModel = foodDBModel;
@@ -35,15 +36,15 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemViewHolder>
 
     @NonNull
     @Override
-    public CartItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    public CurrentCartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         LayoutInflater li = LayoutInflater.from(parent.getContext());
-        View v = li.inflate(R.layout.each_cart_item_view, parent, false);
-        return new CartItemViewHolder(v);
+        View v = li.inflate(R.layout.current_cart_view_holder, parent, false);
+        return new CurrentCartViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CartItemViewHolder holder, int position)
+    public void onBindViewHolder(@NonNull CurrentCartViewHolder holder, int position)
     {
         int currPosition = position;
         Cart cart = CommonData.getCurrentCart();
@@ -53,7 +54,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemViewHolder>
             Food food = foodDBModel.getFoodById(items.get(position));
             holder.bind(food);
 
-            holder.removeButton.setOnClickListener(new View.OnClickListener() {
+            holder.currentCartRemoveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     cart.removeFood(food.getId());

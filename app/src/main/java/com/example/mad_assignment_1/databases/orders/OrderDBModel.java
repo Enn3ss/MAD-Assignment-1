@@ -3,23 +3,25 @@ package com.example.mad_assignment_1.databases.orders;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.mad_assignment_1.databases.orders.OrderDBSchema.orderTable;
 
 import androidx.annotation.NonNull;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+<<<<<<< Updated upstream
 public class OrderDBModel
 {
     private static OrderDBModel instance = null;
     private SQLiteDatabase database;
+=======
+public class OrderDBModel {
+    private static OrderDBModel instance = null;
+    SQLiteDatabase database;
+>>>>>>> Stashed changes
 
     private OrderDBModel() {}
 
@@ -33,8 +35,12 @@ public class OrderDBModel
         return instance;
     }
 
+<<<<<<< Updated upstream
     public void load(Context context)
     {
+=======
+    public void load(Context context) {
+>>>>>>> Stashed changes
         this.database = new OrderDBHelper(context).getWritableDatabase();
     }
 
@@ -68,5 +74,9 @@ public class OrderDBModel
             cursor.close();
         }
         return orderList;
+    }
+
+    public int getSize() {
+        return (int) DatabaseUtils.queryNumEntries(database, orderTable.NAME);
     }
 }

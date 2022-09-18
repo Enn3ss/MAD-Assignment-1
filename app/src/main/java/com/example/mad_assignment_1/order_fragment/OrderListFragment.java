@@ -1,4 +1,4 @@
-package com.example.mad_assignment_1.specials_fragment;
+package com.example.mad_assignment_1.order_fragment;
 
 import android.os.Bundle;
 
@@ -11,15 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mad_assignment_1.R;
-import com.example.mad_assignment_1.databases.food.FoodDBModel;
+import com.example.mad_assignment_1.databases.orders.OrderDBModel;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link SpecialsListFragment#newInstance} factory method to
+ * Use the {@link OrderListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SpecialsListFragment extends Fragment {
-    FoodDBModel foodDBModel;
+public class OrderListFragment extends Fragment {
+    OrderDBModel orderDBModel;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,12 +30,12 @@ public class SpecialsListFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SpecialsListFragment() {
+    public OrderListFragment() {
         // Required empty public constructor
     }
 
-    public SpecialsListFragment(FoodDBModel foodDBModel) {
-        this.foodDBModel = foodDBModel;
+    public OrderListFragment(OrderDBModel orderDBModel) {
+        this.orderDBModel = orderDBModel;
     }
 
     /**
@@ -44,11 +44,11 @@ public class SpecialsListFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SpecialsFragment.
+     * @return A new instance of fragment CartListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SpecialsListFragment newInstance(String param1, String param2) {
-        SpecialsListFragment fragment = new SpecialsListFragment();
+    public static OrderListFragment newInstance(String param1, String param2) {
+        OrderListFragment fragment = new OrderListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -69,11 +69,11 @@ public class SpecialsListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_specials_list, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.specialsRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        SpecialsAdapter specialsAdapter = new SpecialsAdapter(foodDBModel);
-        recyclerView.setAdapter(specialsAdapter);
+        View view = inflater.inflate(R.layout.fragment_order_list, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.ordersRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        OrderAdapter orderAdapter = new OrderAdapter(orderDBModel);
+        recyclerView.setAdapter(orderAdapter);
         return view;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.mad_assignment_1;
+package com.example.mad_assignment_1.activities;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,9 +10,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.mad_assignment_1.CommonData;
+import com.example.mad_assignment_1.FoodViewModel;
+import com.example.mad_assignment_1.R;
+import com.example.mad_assignment_1.RestaurantViewModel;
 import com.example.mad_assignment_1.databases.carts.CartDBModel;
 import com.example.mad_assignment_1.databases.customers.CustomerDBModel;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
+<<<<<<< Updated upstream:app/src/main/java/com/example/mad_assignment_1/HomePageActivity.java
+=======
+import com.example.mad_assignment_1.databases.orders.Order;
+>>>>>>> Stashed changes:app/src/main/java/com/example/mad_assignment_1/activities/HomePageActivity.java
 import com.example.mad_assignment_1.databases.orders.OrderDBModel;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBModel;
 import com.example.mad_assignment_1.food_fragment.FoodListFragment;
@@ -26,9 +34,9 @@ public class HomePageActivity extends AppCompatActivity {
         return instance;
     }
 
-    private RestaurantViewModel restaurantViewModel;
-    private FoodViewModel foodViewModel;
-    private FoodListFragment foodFragment;
+    RestaurantViewModel restaurantViewModel;
+    FoodViewModel foodViewModel;
+    FoodListFragment foodFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +49,6 @@ public class HomePageActivity extends AppCompatActivity {
         Button checkOutButton = (Button) findViewById(R.id.checkoutButton);
         Button logoutButton = (Button) findViewById(R.id.logoutButton);
 
-        //Create Restaurants ViewModel.
         restaurantViewModel = new ViewModelProvider(this).get(RestaurantViewModel.class);
         foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
 
@@ -60,6 +67,11 @@ public class HomePageActivity extends AppCompatActivity {
         OrderDBModel orderDBModel = OrderDBModel.getInstance();
         orderDBModel.load(getApplicationContext());
 
+<<<<<<< Updated upstream:app/src/main/java/com/example/mad_assignment_1/HomePageActivity.java
+=======
+        orderDBModel.addOrder(new Order("1", "7:45 PM", "18/09/2022", "1"));
+
+>>>>>>> Stashed changes:app/src/main/java/com/example/mad_assignment_1/activities/HomePageActivity.java
         SpecialsListFragment specialsFragment = new SpecialsListFragment(foodDBModel);
         RestaurantListFragment restaurantFragment = new RestaurantListFragment(restaurantDBModel);
 

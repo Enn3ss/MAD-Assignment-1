@@ -8,11 +8,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
-import com.example.mad_assignment_1.CommonData;
 import com.example.mad_assignment_1.FoodViewModel;
-import com.example.mad_assignment_1.HomePageActivity;
+import com.example.mad_assignment_1.activities.HomePageActivity;
 import com.example.mad_assignment_1.R;
-import com.example.mad_assignment_1.RestaurantViewModel;
 import com.example.mad_assignment_1.databases.food.Food;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
 
@@ -33,7 +31,7 @@ public class SpecialsAdapter extends Adapter<SpecialsViewHolder> {
     @Override
     public SpecialsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.specials_view_holder, parent, false);
+        View view = layoutInflater.inflate(R.layout.special_view_holder, parent, false);
         return new SpecialsViewHolder(view);
     }
 

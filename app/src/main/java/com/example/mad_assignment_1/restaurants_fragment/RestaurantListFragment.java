@@ -69,7 +69,7 @@ public class RestaurantListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_restaurants, container, false);
+        View view = inflater.inflate(R.layout.fragment_restaurant_list, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.restaurantsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         RestaurantAdapter restaurantAdapter = new RestaurantAdapter(restaurantDBModel);

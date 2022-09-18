@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
-import com.example.mad_assignment_1.HomePageActivity;
+import com.example.mad_assignment_1.activities.HomePageActivity;
 import com.example.mad_assignment_1.RestaurantViewModel;
 import com.example.mad_assignment_1.R;
 import com.example.mad_assignment_1.databases.restaurants.Restaurant;
