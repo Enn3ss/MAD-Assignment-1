@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mad_assignment_1.CommonData;
+import com.example.mad_assignment_1.CurrentData;
 import com.example.mad_assignment_1.R;
 import com.example.mad_assignment_1.checkout_recycler_view.CheckoutAdapter;
 import com.example.mad_assignment_1.databases.carts.Cart;
@@ -38,7 +38,7 @@ public class CheckoutPageActivity extends AppCompatActivity
 
         purchaseButton = (Button) findViewById(R.id.purchaseButton);
 
-        if(CommonData.getCustomer() == null) // Check if customer is already logged in
+        if(CurrentData.getCustomer() == null) // Check if customer is already logged in
         {
             purchaseButton.setAlpha(0);
             FragmentManager fm = getSupportFragmentManager();
@@ -64,20 +64,30 @@ public class CheckoutPageActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                if(CommonData.isCartEmpty()) // User cannot make purchase if cart is empty
+                if(CurrentData.isCartEmpty()) // User cannot make purchase if cart is empty
                 {
                     Toast.makeText(getApplicationContext(), "Cannot make purchase on empty cart!", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
+                    // get current time and date
                     String time = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
                     String date = new SimpleDateFormat("HH:mm:ss").format(new Date());
-                    Order order = new Order(CommonData.getCustomer().getEmail(), time, date, CommonData.getCurrentCart().getCartId());
+
+                    // create order
+                    Order order = new Order(CurrentData.getCustomer().getEmail(), time, date, CurrentData.getCart().getCartId());
+
+                    System.out.println("order: " + cartDBModel.getCartById(order.getCartId()).getItems());
+                    System.out.println("currentData: " + cartDBModel.getCartById(CurrentData.getCart().getCartId()).getItems());
+
                     orderDBModel.addOrder(order);
-                    Cart newCart = new Cart(cartDBModel.getNewCartId(), "", CommonData.getCustomer().getEmail());
+
+                    // create new cart
+                    Cart newCart = new Cart(cartDBModel.getNewCartId(), "", CurrentData.getCustomer().getEmail());
                     cartDBModel.addCart(newCart);
-                    CommonData.getCustomer().setCartId(newCart.getCartId());
-                    CommonData.updateCart();
+
+                    CurrentData.getCustomer().setCartId(newCart.getCartId());
+                    CurrentData.updateCart();
 
                     Toast.makeText(getApplicationContext(), "Purchase made. Your order is on its way!", Toast.LENGTH_SHORT).show();
                 }

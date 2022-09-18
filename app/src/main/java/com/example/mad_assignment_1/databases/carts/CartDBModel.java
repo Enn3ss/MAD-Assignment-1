@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.mad_assignment_1.databases.carts.CartDBSchema.CartTable;
+import com.example.mad_assignment_1.databases.food.Food;
 import com.example.mad_assignment_1.databases.food.FoodDBCursor;
 import com.example.mad_assignment_1.databases.food.foodDBSchema;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBSchema;
@@ -44,19 +45,39 @@ public class CartDBModel
         cv.put(CartTable.Cols.TOTAL_AMOUNT, cart.getTotalAmount());
         cv.put(CartTable.Cols.CUSTOMER_EMAIL, cart.getCustomerEmail());
         db.insert(CartTable.NAME, null, cv);
+
+        System.out.println("addCart : " + cart.getCartId());
+    }
+
+    public void addItemToCart(Cart cart, Food food) {
+        String newItems;
+        if (cart.isCartEmpty()) {
+            newItems = food.getId();
+        }
+        else {
+            newItems = cart.getItems() + "," + food.getId();
+        }
+
+        double newTotalAmount = cart.getTotalAmount() + food.getPrice();
+
+        ContentValues cv = new ContentValues();
+        cv.put(CartTable.Cols.ID, cart.getCartId());
+        cv.put(CartTable.Cols.ITEMS, newItems);
+        cv.put(CartTable.Cols.TOTAL_AMOUNT, newTotalAmount);
+        cv.put(CartTable.Cols.CUSTOMER_EMAIL, cart.getCustomerEmail());
+
+        String[] whereValue = { String.valueOf(cart.getCartId()) };
+        db.update(CartTable.NAME, cv, CartTable.Cols.ID + " = ?", whereValue);
+    }
+
+    public void removeItemFromCart(Cart cart, Food food) {
+        //TODO
     }
 
     public void removeCart(Cart cart)
     {
         String[] whereValue = { String.valueOf(cart.getCartId()) };
         db.delete(CartTable.NAME, CartTable.Cols.ID + " = ?", whereValue);
-    }
-
-    public void updateCart(Cart cart)
-    {
-        ContentValues cv = new ContentValues();
-        String[] whereValue = { String.valueOf(cart.getCartId()) };
-        db.update(CartTable.NAME, cv, CartTable.Cols.ID + " = ?", whereValue);
     }
 
     public List<Cart> getAllCarts()
@@ -83,7 +104,7 @@ public class CartDBModel
 
     public String getNewCartId()
     {
-        int largestId = 1;
+        int largestId = 0;
         CartDBCursor cursor = new CartDBCursor(db.query(CartTable.NAME, null, null, null, null, null, null));
         try
         {

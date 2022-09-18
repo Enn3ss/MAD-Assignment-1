@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import com.example.mad_assignment_1.R;
-import com.example.mad_assignment_1.databases.carts.Cart;
+import com.example.mad_assignment_1.databases.carts.CartDBModel;
 import com.example.mad_assignment_1.databases.food.Food;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
 
@@ -17,9 +17,10 @@ import java.util.Arrays;
 
 public class PreviousCartAdapter extends Adapter<PreviousCartViewHolder> {
     FoodDBModel foodDBModel = FoodDBModel.getInstance();
-    Cart currentCart;
+    CartDBModel cartDBModel = CartDBModel.getInstance();
+    String currentCart;
 
-    public PreviousCartAdapter(Cart currentCart) {
+    public PreviousCartAdapter(String currentCart) {
         this.currentCart = currentCart;
     }
 
@@ -33,13 +34,17 @@ public class PreviousCartAdapter extends Adapter<PreviousCartViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PreviousCartViewHolder holder, int position) {
-        ArrayList<String> items = new ArrayList<>(Arrays.asList(currentCart.getItems().split(",")));
-        Food food = foodDBModel.getFoodById(items.get(position));
+        ArrayList<String> items = new ArrayList<>(Arrays.asList(cartDBModel.getCartById(currentCart).getItems().split(",")));
+
+        System.out.println("test: " + cartDBModel.getCartById(currentCart).getItems());
+
+        System.out.println("id: " + currentCart);
+        Food food = foodDBModel.getFoodById(items.get(position)); //TODO
         holder.bind(food);
     }
 
     @Override
     public int getItemCount() {
-        return currentCart.getSize();
+        return cartDBModel.getCartById(currentCart).getSize();
     }
 }

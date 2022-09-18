@@ -25,7 +25,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder {
     public void bind(Order order) {
         // gets CartDBModel and gets the cart of the parameter order.
         String totalPrice = Double.toString(CartDBModel.getInstance().getCartById(order.getCartId()).getTotalAmount());
-        totalPriceTextView.setText(totalPrice);
+        totalPriceTextView.setText("$" + totalPrice);
         dateTextView.setText(order.getDate());
         timeTextView.setText(order.getTime());
     }

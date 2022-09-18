@@ -52,7 +52,7 @@ public class CartPageActivity extends AppCompatActivity
             @Override
             public void onChanged(String value) {
                 if (!value.equals("")) {
-                    PreviousCartFragment previousCartFragment = new PreviousCartFragment(cartDBModel.getCartById(value));
+                    PreviousCartFragment previousCartFragment = new PreviousCartFragment(value);
                     fragmentManager.beginTransaction().replace(R.id.cartFragmentContainer, previousCartFragment).addToBackStack(null).commit();
                 }
             }

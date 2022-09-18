@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.Adapter;
 
-import com.example.mad_assignment_1.CommonData;
+import com.example.mad_assignment_1.CurrentData;
 import com.example.mad_assignment_1.R;
 import com.example.mad_assignment_1.databases.carts.Cart;
 import com.example.mad_assignment_1.databases.carts.CartDBModel;
@@ -45,7 +45,7 @@ public class CurrentCartAdapter extends Adapter<CurrentCartViewHolder>
     public void onBindViewHolder(@NonNull CurrentCartViewHolder holder, int position)
     {
         int currPosition = position;
-        Cart cart = CommonData.getCurrentCart();
+        Cart cart = CurrentData.getCart();
         ArrayList<String> items = new ArrayList<>(Arrays.asList(cart.getItems().split(",")));
 
         if (!items.get(position).equals("")) {
@@ -70,6 +70,6 @@ public class CurrentCartAdapter extends Adapter<CurrentCartViewHolder>
     @Override
     public int getItemCount()
     {
-        return CommonData.getCartSize();
+        return CurrentData.getCartSize();
     }
 }

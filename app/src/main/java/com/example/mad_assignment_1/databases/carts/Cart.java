@@ -60,21 +60,25 @@ public class Cart
         else {
             this.items += "," + foodId;
         }
+
+        System.out.println("cart items: " + this.items);
+
         totalAmount += FoodDBModel.getInstance().getFoodById(foodId).getPrice();
     }
 
-    public void removeFood(String item) {
+    public void removeFood(String foodId) {
         if (!isCartEmpty()) {
             ArrayList<String> list = new ArrayList<>(Arrays.asList(items.split(",")));
             for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).equals(item)) {
+                if (list.get(i).equals(foodId)) {
+                    totalAmount -= FoodDBModel.getInstance().getFoodById(foodId).getPrice();
                     list.remove(i);
                     break;
                 }
             }
-            items = "";
-            for (int i = 0; i < list.size(); i++) {
-                addFood(list.get(i));
+            items = list.get(0);
+            for (int i = 1; i < list.size(); i++) {
+                items += "," + list.get(i);
             }
         }
     }

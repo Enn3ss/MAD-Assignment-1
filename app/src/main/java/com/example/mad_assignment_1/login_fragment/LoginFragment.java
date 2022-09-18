@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.mad_assignment_1.CommonData;
+import com.example.mad_assignment_1.CurrentData;
 import com.example.mad_assignment_1.R;
 import com.example.mad_assignment_1.databases.carts.Cart;
 import com.example.mad_assignment_1.databases.carts.CartDBModel;
@@ -90,7 +90,7 @@ public class LoginFragment extends Fragment
                 {
                     Customer loginCustomer = customerDBModel.getCustomer(emailEditText.getText().toString());
 
-                    CommonData.setCurrentCustomer(loginCustomer);
+                    CurrentData.setCustomer(loginCustomer);
                     Toast.makeText(getActivity(), "You have successfully logged in!", Toast.LENGTH_SHORT).show();
                     getActivity().onBackPressed();
                 }
@@ -115,14 +115,14 @@ public class LoginFragment extends Fragment
                     String newCartId = cartDBModel.getNewCartId();
 
                     Customer newCustomer = new Customer(emailEditText.getText().toString(), passwordEditText.getText().toString(), newCartId);
-                    Cart newCart = new Cart(newCartId, CommonData.getCurrentCart().getItems(), newCustomer.getEmail());
+                    Cart newCart = new Cart(newCartId, CurrentData.getCart().getItems(), CurrentData.getCart().getTotalAmount(), newCustomer.getEmail());
 
-                    newCart.setFoodItems(CommonData.getCurrentCart().getItems());
+                    newCart.setFoodItems(CurrentData.getCart().getItems());
 
                     cartDBModel.addCart(newCart);
                     customerDBModel.addCustomer(newCustomer);
 
-                    CommonData.setCurrentCustomer(newCustomer);
+                    CurrentData.setCustomer(newCustomer);
 
                     Toast.makeText(getActivity(), "You have successfully registered!", Toast.LENGTH_SHORT).show();
                     getActivity().onBackPressed();

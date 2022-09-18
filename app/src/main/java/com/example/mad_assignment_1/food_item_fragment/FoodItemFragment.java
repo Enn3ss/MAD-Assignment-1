@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mad_assignment_1.CommonData;
+import com.example.mad_assignment_1.CurrentData;
 import com.example.mad_assignment_1.R;
 import com.example.mad_assignment_1.databases.food.Food;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
@@ -127,7 +127,7 @@ public class FoodItemFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 for (int i = 0; i < Integer.parseInt(foodItemAmount.getText().toString()); i++) {
-                    CommonData.getCurrentCart().addFood(food.getId());
+                    CurrentData.addFoodToCart(food.getId());
                 }
                 Toast.makeText(getActivity(), foodItemAmount.getText().toString() + "x " + food.getName() + " has been added to cart", Toast.LENGTH_SHORT).show();
             }

@@ -12,14 +12,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.mad_assignment_1.CommonData;
+import com.example.mad_assignment_1.CurrentData;
 import com.example.mad_assignment_1.R;
 import com.example.mad_assignment_1.databases.carts.Cart;
 import com.example.mad_assignment_1.databases.carts.CartDBModel;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
 import com.example.mad_assignment_1.databases.orders.OrderDBModel;
 import com.example.mad_assignment_1.order_fragment.OrderListFragment;
-import com.example.mad_assignment_1.restaurants_fragment.RestaurantAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -96,7 +95,7 @@ public class CurrentCartFragment extends Fragment {
         CurrentCartAdapter currentCartAdapter = new CurrentCartAdapter(recyclerView, cartIsEmpty);
         recyclerView.setAdapter(currentCartAdapter);
 
-        Cart cart = CommonData.getCurrentCart();
+        Cart cart = CurrentData.getCart();
 
         if (cart.isCartEmpty()) {
             recyclerView.setAlpha(0);

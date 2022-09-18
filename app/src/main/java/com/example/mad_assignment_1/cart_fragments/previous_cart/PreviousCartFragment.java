@@ -21,7 +21,7 @@ import com.example.mad_assignment_1.databases.carts.CartDBModel;
  */
 public class PreviousCartFragment extends Fragment {
     CartDBModel cartDBModel;
-    Cart currentCart;
+    String currentCart;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,7 +36,7 @@ public class PreviousCartFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public PreviousCartFragment(Cart currentCart) {
+    public PreviousCartFragment(String currentCart) {
         this.cartDBModel = CartDBModel.getInstance();
         this.currentCart = currentCart;
     }

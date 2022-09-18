@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mad_assignment_1.CommonData;
+import com.example.mad_assignment_1.CurrentData;
 import com.example.mad_assignment_1.R;
 import com.example.mad_assignment_1.databases.carts.Cart;
 import com.example.mad_assignment_1.databases.food.Food;
@@ -38,7 +38,7 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutViewHolder>
     @Override
     public void onBindViewHolder(@NonNull CheckoutViewHolder holder, int position)
     {
-        Cart cart = CommonData.getCurrentCart();
+        Cart cart = CurrentData.getCart();
         ArrayList<String> items = new ArrayList<>(Arrays.asList(cart.getItems().split(",")));
 
         if (!items.get(position).equals(""))
@@ -51,6 +51,6 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutViewHolder>
     @Override
     public int getItemCount()
     {
-        return CommonData.getCartSize();
+        return CurrentData.getCartSize();
     }
 }

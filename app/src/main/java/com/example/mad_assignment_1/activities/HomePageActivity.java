@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.mad_assignment_1.CommonData;
+import com.example.mad_assignment_1.CurrentData;
 import com.example.mad_assignment_1.FoodViewModel;
 import com.example.mad_assignment_1.R;
 import com.example.mad_assignment_1.RestaurantViewModel;
@@ -87,13 +87,13 @@ public class HomePageActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(CommonData.getCustomer() == null)
+                if(CurrentData.getCustomer() == null)
                 {
                     Toast.makeText(HomePageActivity.this, "You are not logged in!", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    CommonData.setCurrentCustomer(null);
+                    CurrentData.setCustomer(null);
                     Toast.makeText(HomePageActivity.this, "You have logged out!", Toast.LENGTH_SHORT).show();
                 }
             }
