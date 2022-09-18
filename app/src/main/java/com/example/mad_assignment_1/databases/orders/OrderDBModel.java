@@ -29,7 +29,8 @@ public class OrderDBModel
         return instance;
     }
 
-    public void load(Context context) {
+    public void load(Context context)
+    {
         this.database = new OrderDBHelper(context).getWritableDatabase();
     }
 
