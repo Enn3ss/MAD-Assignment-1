@@ -19,7 +19,7 @@ import com.example.mad_assignment_1.databases.food.FoodDBModel;
  * create an instance of this fragment.
  */
 public class FoodListFragment extends Fragment {
-    FoodDBModel foodDBModel;
+    FoodDBModel foodDBModel = FoodDBModel.getInstance();
     String currentRestaurant;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -35,8 +35,7 @@ public class FoodListFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public FoodListFragment(FoodDBModel foodDBModel, String currentRestaurant) {
-        this.foodDBModel = foodDBModel;
+    public FoodListFragment(String currentRestaurant) {
         this.currentRestaurant = currentRestaurant;
     }
 

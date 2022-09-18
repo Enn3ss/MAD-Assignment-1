@@ -12,16 +12,10 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 
-<<<<<<< Updated upstream
 public class OrderDBModel
 {
     private static OrderDBModel instance = null;
     private SQLiteDatabase database;
-=======
-public class OrderDBModel {
-    private static OrderDBModel instance = null;
-    SQLiteDatabase database;
->>>>>>> Stashed changes
 
     private OrderDBModel() {}
 
@@ -35,12 +29,7 @@ public class OrderDBModel {
         return instance;
     }
 
-<<<<<<< Updated upstream
-    public void load(Context context)
-    {
-=======
     public void load(Context context) {
->>>>>>> Stashed changes
         this.database = new OrderDBHelper(context).getWritableDatabase();
     }
 

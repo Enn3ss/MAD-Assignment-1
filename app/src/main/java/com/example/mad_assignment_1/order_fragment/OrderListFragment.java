@@ -19,7 +19,7 @@ import com.example.mad_assignment_1.databases.orders.OrderDBModel;
  * create an instance of this fragment.
  */
 public class OrderListFragment extends Fragment {
-    OrderDBModel orderDBModel;
+    OrderDBModel orderDBModel = OrderDBModel.getInstance();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,10 +32,6 @@ public class OrderListFragment extends Fragment {
 
     public OrderListFragment() {
         // Required empty public constructor
-    }
-
-    public OrderListFragment(OrderDBModel orderDBModel) {
-        this.orderDBModel = orderDBModel;
     }
 
     /**
@@ -72,7 +68,7 @@ public class OrderListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_order_list, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.ordersRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        OrderAdapter orderAdapter = new OrderAdapter(orderDBModel);
+        OrderAdapter orderAdapter = new OrderAdapter();
         recyclerView.setAdapter(orderAdapter);
         return view;
     }

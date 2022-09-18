@@ -5,11 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-<<<<<<< Updated upstream:app/src/main/java/com/example/mad_assignment_1/CheckoutPageActivity.java
-import android.widget.TextView;
 import android.widget.Toast;
-=======
->>>>>>> Stashed changes:app/src/main/java/com/example/mad_assignment_1/activities/CheckoutPageActivity.java
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;

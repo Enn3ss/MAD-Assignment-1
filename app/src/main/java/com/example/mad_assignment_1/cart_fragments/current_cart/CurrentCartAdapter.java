@@ -21,15 +21,13 @@ import java.util.Arrays;
 
 public class CurrentCartAdapter extends Adapter<CurrentCartViewHolder>
 {
-    CartDBModel cartDBModel;
-    FoodDBModel foodDBModel;
+    CartDBModel cartDBModel = CartDBModel.getInstance();
+    FoodDBModel foodDBModel = FoodDBModel.getInstance();
     RecyclerView recyclerView;
     TextView cartIsEmpty;
 
-    public CurrentCartAdapter(CartDBModel cartDBModel, FoodDBModel foodDBModel, RecyclerView recyclerView, TextView cartIsEmpty)
+    public CurrentCartAdapter(RecyclerView recyclerView, TextView cartIsEmpty)
     {
-        this.cartDBModel = cartDBModel;
-        this.foodDBModel = foodDBModel;
         this.recyclerView = recyclerView;
         this.cartIsEmpty = cartIsEmpty;
     }
@@ -38,9 +36,9 @@ public class CurrentCartAdapter extends Adapter<CurrentCartViewHolder>
     @Override
     public CurrentCartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
-        LayoutInflater li = LayoutInflater.from(parent.getContext());
-        View v = li.inflate(R.layout.current_cart_view_holder, parent, false);
-        return new CurrentCartViewHolder(v);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View view = layoutInflater.inflate(R.layout.current_cart_view_holder, parent, false);
+        return new CurrentCartViewHolder(view);
     }
 
     @Override

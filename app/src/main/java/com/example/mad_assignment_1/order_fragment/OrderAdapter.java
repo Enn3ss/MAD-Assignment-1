@@ -17,11 +17,10 @@ import com.example.mad_assignment_1.databases.orders.OrderDBModel;
 import java.util.ArrayList;
 
 public class OrderAdapter extends Adapter<OrderViewHolder> {
-    OrderDBModel orderDBModel;
+    OrderDBModel orderDBModel = OrderDBModel.getInstance();
     OrderViewModel orderViewModel;
 
-    public OrderAdapter(OrderDBModel orderDBModel) {
-        this.orderDBModel = orderDBModel;
+    public OrderAdapter() {
         this.orderViewModel = new ViewModelProvider(CartPageActivity.getInstance()).get(OrderViewModel.class);
     }
 

@@ -22,7 +22,7 @@ public class CurrentCartViewHolder extends ViewHolder
         super(itemView);
 
         currentCartItemIcon = (ImageView) itemView.findViewById(R.id.currentCartItemIcon);
-        currentCartItemName = (TextView) itemView.findViewById(R.id.name);
+        currentCartItemName = (TextView) itemView.findViewById(R.id.currentCartItemName);
         currentCartRemoveButton = (Button) itemView.findViewById(R.id.currentCartRemoveButton);
     }
 

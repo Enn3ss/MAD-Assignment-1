@@ -24,7 +24,7 @@ import com.example.mad_assignment_1.databases.food.FoodDBModel;
  * create an instance of this fragment.
  */
 public class FoodItemFragment extends Fragment {
-    FoodDBModel foodDBModel;
+    FoodDBModel foodDBModel = FoodDBModel.getInstance();
     String selectedFoodItem;
 
     ImageView foodItemIcon;
@@ -49,8 +49,7 @@ public class FoodItemFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public FoodItemFragment(FoodDBModel foodDBModel, String selectedFoodItem) {
-        this.foodDBModel = foodDBModel;
+    public FoodItemFragment(String selectedFoodItem) {
         this.selectedFoodItem = selectedFoodItem;
     }
 

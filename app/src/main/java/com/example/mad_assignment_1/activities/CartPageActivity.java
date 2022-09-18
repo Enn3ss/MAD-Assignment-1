@@ -43,7 +43,7 @@ public class CartPageActivity extends AppCompatActivity
         OrderDBModel orderDBModel = OrderDBModel.getInstance();
 
         CurrentCartFragment currentCartFragment = new CurrentCartFragment(cartDBModel, foodDBModel);
-        OrderListFragment orderListFragment = new OrderListFragment(orderDBModel);
+        OrderListFragment orderListFragment = new OrderListFragment();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.cartFragmentContainer, currentCartFragment).setReorderingAllowed(true).commit();
@@ -52,7 +52,7 @@ public class CartPageActivity extends AppCompatActivity
             @Override
             public void onChanged(String value) {
                 if (!value.equals("")) {
-                    PreviousCartFragment previousCartFragment = new PreviousCartFragment();
+                    PreviousCartFragment previousCartFragment = new PreviousCartFragment(cartDBModel.getCartById(value));
                     fragmentManager.beginTransaction().replace(R.id.cartFragmentContainer, previousCartFragment).addToBackStack(null).commit();
                 }
             }

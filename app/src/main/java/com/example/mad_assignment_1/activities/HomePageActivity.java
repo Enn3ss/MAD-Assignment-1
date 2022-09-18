@@ -17,10 +17,8 @@ import com.example.mad_assignment_1.RestaurantViewModel;
 import com.example.mad_assignment_1.databases.carts.CartDBModel;
 import com.example.mad_assignment_1.databases.customers.CustomerDBModel;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
-<<<<<<< Updated upstream:app/src/main/java/com/example/mad_assignment_1/HomePageActivity.java
-=======
+
 import com.example.mad_assignment_1.databases.orders.Order;
->>>>>>> Stashed changes:app/src/main/java/com/example/mad_assignment_1/activities/HomePageActivity.java
 import com.example.mad_assignment_1.databases.orders.OrderDBModel;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBModel;
 import com.example.mad_assignment_1.food_fragment.FoodListFragment;
@@ -67,11 +65,6 @@ public class HomePageActivity extends AppCompatActivity {
         OrderDBModel orderDBModel = OrderDBModel.getInstance();
         orderDBModel.load(getApplicationContext());
 
-<<<<<<< Updated upstream:app/src/main/java/com/example/mad_assignment_1/HomePageActivity.java
-=======
-        orderDBModel.addOrder(new Order("1", "7:45 PM", "18/09/2022", "1"));
-
->>>>>>> Stashed changes:app/src/main/java/com/example/mad_assignment_1/activities/HomePageActivity.java
         SpecialsListFragment specialsFragment = new SpecialsListFragment(foodDBModel);
         RestaurantListFragment restaurantFragment = new RestaurantListFragment(restaurantDBModel);
 
@@ -112,7 +105,7 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onChanged(String value) {
                 if (!value.equals("")) {
-                    FoodListFragment foodListFragment = new FoodListFragment(foodDBModel, value);
+                    FoodListFragment foodListFragment = new FoodListFragment(value);
                     fragmentManager.beginTransaction().replace(R.id.menuFragmentContainer, foodListFragment).addToBackStack(null).commit();
                 }
             }
@@ -120,11 +113,9 @@ public class HomePageActivity extends AppCompatActivity {
 
         foodViewModel.value.observe(this, new Observer<String>() {
             @Override
-            public void onChanged(String value)
-            {
-                if (!value.equals(""))
-                {
-                    FoodItemFragment foodItemFragment = new FoodItemFragment(foodDBModel, value);
+            public void onChanged(String value) {
+                if (!value.equals("")) {
+                    FoodItemFragment foodItemFragment = new FoodItemFragment(value);
                     fragmentManager.beginTransaction().replace(R.id.menuFragmentContainer, foodItemFragment).addToBackStack(null).commit();
                 }
             }

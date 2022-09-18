@@ -93,7 +93,7 @@ public class CurrentCartFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.currentCartRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        CurrentCartAdapter currentCartAdapter = new CurrentCartAdapter(cartDBModel, foodDBModel, recyclerView, cartIsEmpty);
+        CurrentCartAdapter currentCartAdapter = new CurrentCartAdapter(recyclerView, cartIsEmpty);
         recyclerView.setAdapter(currentCartAdapter);
 
         Cart cart = CommonData.getCurrentCart();
@@ -110,7 +110,7 @@ public class CurrentCartFragment extends Fragment {
         viewPreviousOrders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.cartFragmentContainer, new OrderListFragment(orderDBModel)).addToBackStack(null).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.cartFragmentContainer, new OrderListFragment()).addToBackStack(null).commit();
             }
         });
 

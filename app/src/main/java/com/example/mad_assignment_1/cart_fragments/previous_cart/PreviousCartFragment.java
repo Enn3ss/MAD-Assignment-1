@@ -3,12 +3,16 @@ package com.example.mad_assignment_1.cart_fragments.previous_cart;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mad_assignment_1.R;
+import com.example.mad_assignment_1.databases.carts.Cart;
+import com.example.mad_assignment_1.databases.carts.CartDBModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +20,8 @@ import com.example.mad_assignment_1.R;
  * create an instance of this fragment.
  */
 public class PreviousCartFragment extends Fragment {
+    CartDBModel cartDBModel;
+    Cart currentCart;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +34,11 @@ public class PreviousCartFragment extends Fragment {
 
     public PreviousCartFragment() {
         // Required empty public constructor
+    }
+
+    public PreviousCartFragment(Cart currentCart) {
+        this.cartDBModel = CartDBModel.getInstance();
+        this.currentCart = currentCart;
     }
 
     /**
@@ -61,6 +72,13 @@ public class PreviousCartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_previous_cart, container, false);
+        View view = inflater.inflate(R.layout.fragment_previous_cart, container, false);
+
+        RecyclerView recyclerView = view.findViewById(R.id.previousCartRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        PreviousCartAdapter previousCartAdapter = new PreviousCartAdapter(currentCart);
+        recyclerView.setAdapter(previousCartAdapter);
+
+        return view;
     }
 }
