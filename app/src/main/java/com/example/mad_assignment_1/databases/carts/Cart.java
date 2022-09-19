@@ -12,20 +12,20 @@ public class Cart
     double totalAmount;
     String customerEmail;
 
-    public Cart(String cartId, String items, String customerId)
+    public Cart(String cartId, String items, String customerEmail)
     {
         this.cartId = cartId;
         this.items = items;
-        this.totalAmount = 0;
-        this.customerEmail = customerId;
+        this.totalAmount = 0.0;
+        this.customerEmail = customerEmail;
     }
 
-    public Cart(String cartId, String items, double totalAmount, String customerId)
+    public Cart(String cartId, String items, double totalAmount, String customerEmail)
     {
         this.cartId = cartId;
         this.items = items;
         this.totalAmount = totalAmount;
-        this.customerEmail = customerId;
+        this.customerEmail = customerEmail;
     }
 
     public String getCartId() { return cartId; }
@@ -55,31 +55,33 @@ public class Cart
     public void addFood(String foodId)
     {
         if (isCartEmpty()) {
-            this.items += foodId;
+            items += foodId;
         }
         else {
-            this.items += "," + foodId;
+            items += "," + foodId;
         }
-
-        System.out.println("cart items: " + this.items);
-
         totalAmount += FoodDBModel.getInstance().getFoodById(foodId).getPrice();
     }
 
     public void removeFood(String foodId) {
         if (!isCartEmpty()) {
-            ArrayList<String> list = new ArrayList<>(Arrays.asList(items.split(",")));
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).equals(foodId)) {
-                    totalAmount -= FoodDBModel.getInstance().getFoodById(foodId).getPrice();
-                    list.remove(i);
-                    break;
+            // if the first id in items is equal to foodId
+            if (String.valueOf(items.charAt(0)).equals(foodId)) {
+                // if items has more than 1 id in it
+                if (items.length() > 1) {
+                    // remove the first id and the comma following it
+                    items = items.substring(2);
+                }
+                else {
+                    // set items to empty as the only id was removed
+                    items = "";
                 }
             }
-            items = list.get(0);
-            for (int i = 1; i < list.size(); i++) {
-                items += "," + list.get(i);
+            // if the first id is not equal to foodId
+            else {
+                items = items.replaceFirst("," + foodId, "");
             }
+            totalAmount -= FoodDBModel.getInstance().getFoodById(foodId).getPrice();
         }
     }
 

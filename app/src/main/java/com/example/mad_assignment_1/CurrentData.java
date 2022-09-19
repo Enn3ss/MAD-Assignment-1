@@ -3,6 +3,8 @@ package com.example.mad_assignment_1;
 import com.example.mad_assignment_1.databases.carts.Cart;
 import com.example.mad_assignment_1.databases.carts.CartDBModel;
 import com.example.mad_assignment_1.databases.customers.Customer;
+import com.example.mad_assignment_1.databases.customers.CustomerDBModel;
+import com.example.mad_assignment_1.databases.food.Food;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
 
 public class CurrentData {
@@ -19,42 +21,65 @@ public class CurrentData {
     }
 
     public static int getCartSize() {
-        return cart.getSize();
+        if (customer == null) {
+            return cart.getSize();
+        }
+        else {
+            return CartDBModel.getInstance().getCartById(customer.getCartId()).getSize();
+        }
     }
 
     public static Customer getCustomer() {
         return customer;
     }
 
-    public static void setCustomer(Customer newCustomer) {
-
-        if (newCustomer == null) {
+    public static void setCustomer(String customerEmail) {
+        if (customerEmail == null) {
             customer = null;
             cart = new Cart("", "", "");
         }
         else {
-            customer = newCustomer;
-            cart = CartDBModel.getInstance().getCartById(newCustomer.getCartId());
+            customer = CustomerDBModel.getInstance().getCustomer(customerEmail);
+            cart = null;
+        }
+    }
+
+    public static void setCustomersCart(String cartId) {
+        if (customer != null) {
+            CustomerDBModel.getInstance().setCustomerCartId(customer, CartDBModel.getInstance().getCartById(cartId));
         }
     }
 
     public static boolean isCartEmpty() {
-        return cart.isCartEmpty();
-    }
-
-    // Once a customer "makes purchase" their cart will reset and be empty again
-    public static void updateCart() {
-        cart = CartDBModel.getInstance().getCartById(customer.getCartId());
+        if (customer == null) {
+            return cart.isCartEmpty();
+        }
+        else {
+            return CartDBModel.getInstance().getCartById(customer.getCartId()).isCartEmpty();
+        }
     }
 
     public static void addFoodToCart(String foodId) {
-        cart.addFood(foodId);
-        if (customer != null) {
-            CartDBModel.getInstance().addItemToCart(cart, FoodDBModel.getInstance().getFoodById(foodId));
+        if (customer == null) {
+            cart.addFood(foodId);
+        }
+        else {
+            Cart tempCart = CartDBModel.getInstance().getCartById(customer.getCartId());
+            Food tempFood = FoodDBModel.getInstance().getFoodById(foodId);
+
+            CartDBModel.getInstance().addItemToCart(tempCart, tempFood);
         }
     }
 
     public static void removeFoodFromCart(String foodId) {
-        //TODO
+        if (customer == null) {
+            cart.removeFood(foodId);
+        }
+        else {
+            Cart tempCart = CartDBModel.getInstance().getCartById(customer.getCartId());
+            Food tempFood = FoodDBModel.getInstance().getFoodById(foodId);
+
+            CartDBModel.getInstance().removeItemFromCart(tempCart, tempFood);
+        }
     }
 }

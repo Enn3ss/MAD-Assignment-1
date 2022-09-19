@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.NonNull;
 
-import com.example.mad_assignment_1.databases.customers.CustomerDBSchema.customerTable;
+import com.example.mad_assignment_1.databases.carts.Cart;
+import com.example.mad_assignment_1.databases.carts.CartDBSchema;
+import com.example.mad_assignment_1.databases.customers.CustomerDBSchema.CustomerTable;
 
 import java.util.ArrayList;
 
@@ -36,16 +38,16 @@ public class CustomerDBModel
     public void addCustomer(@NonNull Customer customer)
     {
         ContentValues cv = new ContentValues();
-        cv.put(customerTable.Cols.EMAIL, customer.getEmail());
-        cv.put(customerTable.Cols.PASSWORD, customer.getPassword());
-        cv.put(customerTable.Cols.CART_ID, customer.getCartId());
-        database.insert(customerTable.NAME, null, cv);
+        cv.put(CustomerTable.Cols.EMAIL, customer.getEmail());
+        cv.put(CustomerTable.Cols.PASSWORD, customer.getPassword());
+        cv.put(CustomerTable.Cols.CART_ID, customer.getCartId());
+        database.insert(CustomerTable.NAME, null, cv);
     }
 
     public ArrayList<Customer> getAllCustomers()
     {
         ArrayList<Customer> customerList = new ArrayList<>();
-        Cursor cursor = database.query(customerTable.NAME, null, null, null, null, null, null);
+        Cursor cursor = database.query(CustomerTable.NAME, null, null, null, null, null, null);
         CustomerDBCursor customerDBCursor = new CustomerDBCursor(cursor);
 
         try
@@ -69,8 +71,8 @@ public class CustomerDBModel
     {
         String searchQuery =
                 "SELECT * " +
-                "FROM " + customerTable.NAME + " " +
-                "WHERE " + customerTable.Cols.EMAIL + " = " + "'" + email + "';";
+                "FROM " + CustomerTable.NAME + " " +
+                "WHERE " + CustomerTable.Cols.EMAIL + " = " + "'" + email + "';";
 
         Cursor cursor = database.rawQuery(searchQuery, null);
         CustomerDBCursor customerDBCursor = new CustomerDBCursor(cursor);
@@ -95,9 +97,9 @@ public class CustomerDBModel
     {
         String searchQuery =
                 "SELECT * " +
-                 "FROM " + customerTable.NAME + " " +
-                 "WHERE " + customerTable.Cols.EMAIL + " = '" + email + "' " +
-                 "AND " + customerTable.Cols.PASSWORD + " = '" + password + "';";
+                 "FROM " + CustomerTable.NAME + " " +
+                 "WHERE " + CustomerTable.Cols.EMAIL + " = '" + email + "' " +
+                 "AND " + CustomerTable.Cols.PASSWORD + " = '" + password + "';";
 
         Cursor cursor = database.rawQuery(searchQuery, null);
         CustomerDBCursor customerDBCursor = new CustomerDBCursor(cursor);
@@ -122,8 +124,8 @@ public class CustomerDBModel
     {
         String searchQuery =
                 "SELECT * " +
-                "FROM " + customerTable.NAME + " " +
-                "WHERE " + customerTable.Cols.EMAIL + " = '" + email + "';";
+                "FROM " + CustomerTable.NAME + " " +
+                "WHERE " + CustomerTable.Cols.EMAIL + " = '" + email + "';";
 
         Cursor cursor = database.rawQuery(searchQuery, null);
         CustomerDBCursor customerDBCursor = new CustomerDBCursor(cursor);
@@ -142,5 +144,15 @@ public class CustomerDBModel
         }
 
         return null;
+    }
+
+    public void setCustomerCartId(Customer customer, Cart cart) {
+        ContentValues cv = new ContentValues();
+        cv.put(CustomerTable.Cols.EMAIL, customer.getEmail());
+        cv.put(CustomerTable.Cols.PASSWORD, customer.getPassword());
+        cv.put(CustomerTable.Cols.CART_ID, cart.getCartId());
+
+        String[] whereValue = { String.valueOf(customer.getEmail()) };
+        database.update(CartDBSchema.CartTable.NAME, cv, CustomerTable.Cols.EMAIL + " = ?", whereValue);
     }
 }

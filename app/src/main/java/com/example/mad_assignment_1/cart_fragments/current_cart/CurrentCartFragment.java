@@ -97,7 +97,7 @@ public class CurrentCartFragment extends Fragment {
 
         Cart cart = CurrentData.getCart();
 
-        if (cart.isCartEmpty()) {
+        if (CurrentData.isCartEmpty()) {
             recyclerView.setAlpha(0);
             cartIsEmpty.setAlpha(1);
         }

@@ -76,10 +76,6 @@ public class CheckoutPageActivity extends AppCompatActivity
 
                     // create order
                     Order order = new Order(CurrentData.getCustomer().getEmail(), time, date, CurrentData.getCart().getCartId());
-
-                    System.out.println("order: " + cartDBModel.getCartById(order.getCartId()).getItems());
-                    System.out.println("currentData: " + cartDBModel.getCartById(CurrentData.getCart().getCartId()).getItems());
-
                     orderDBModel.addOrder(order);
 
                     // create new cart
@@ -87,7 +83,6 @@ public class CheckoutPageActivity extends AppCompatActivity
                     cartDBModel.addCart(newCart);
 
                     CurrentData.getCustomer().setCartId(newCart.getCartId());
-                    CurrentData.updateCart();
 
                     Toast.makeText(getApplicationContext(), "Purchase made. Your order is on its way!", Toast.LENGTH_SHORT).show();
                 }

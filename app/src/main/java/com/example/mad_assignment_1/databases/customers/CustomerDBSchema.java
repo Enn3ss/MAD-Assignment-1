@@ -2,7 +2,7 @@ package com.example.mad_assignment_1.databases.customers;
 
 public class CustomerDBSchema {
     //TABLE
-    public static class customerTable {
+    public static class CustomerTable {
         public static final String NAME = "customers";
         //COLUMNS
         public static class Cols {

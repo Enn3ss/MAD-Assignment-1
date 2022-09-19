@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.mad_assignment_1.databases.carts.CartDBSchema.CartTable;
 import com.example.mad_assignment_1.databases.food.Food;
 import com.example.mad_assignment_1.databases.food.FoodDBCursor;
+import com.example.mad_assignment_1.databases.food.FoodDBModel;
 import com.example.mad_assignment_1.databases.food.foodDBSchema;
 import com.example.mad_assignment_1.databases.restaurants.RestaurantDBSchema;
 
@@ -45,8 +46,6 @@ public class CartDBModel
         cv.put(CartTable.Cols.TOTAL_AMOUNT, cart.getTotalAmount());
         cv.put(CartTable.Cols.CUSTOMER_EMAIL, cart.getCustomerEmail());
         db.insert(CartTable.NAME, null, cv);
-
-        System.out.println("addCart : " + cart.getCartId());
     }
 
     public void addItemToCart(Cart cart, Food food) {
@@ -71,7 +70,35 @@ public class CartDBModel
     }
 
     public void removeItemFromCart(Cart cart, Food food) {
-        //TODO
+        String newItems;
+        if (!cart.isCartEmpty()) {
+            // if the first id in items is equal to foodId
+            if (String.valueOf(cart.getItems().charAt(0)).equals(food.getId())) {
+                // if items has more than 1 id in it
+                if (cart.getItems().length() > 1) {
+                    // remove the first id and the comma following it
+                    newItems = cart.getItems().substring(2);
+                }
+                else {
+                    // set items to empty as the only id was removed
+                    newItems = "";
+                }
+            }
+            // if the first id is not equal to foodId
+            else {
+                newItems = cart.getItems().replaceFirst("," + food.getId(), "");
+            }
+            double newTotalAmount = cart.getTotalAmount() - food.getPrice();
+
+            ContentValues cv = new ContentValues();
+            cv.put(CartTable.Cols.ID, cart.getCartId());
+            cv.put(CartTable.Cols.ITEMS, newItems);
+            cv.put(CartTable.Cols.TOTAL_AMOUNT, newTotalAmount);
+            cv.put(CartTable.Cols.CUSTOMER_EMAIL, cart.getCustomerEmail());
+
+            String[] whereValue = { String.valueOf(cart.getCartId()) };
+            db.update(CartTable.NAME, cv, CartTable.Cols.ID + " = ?", whereValue);
+        }
     }
 
     public void removeCart(Cart cart)
@@ -148,7 +175,6 @@ public class CartDBModel
         {
             cartDBCursor.close();
         }
-
         return null;
     }
 

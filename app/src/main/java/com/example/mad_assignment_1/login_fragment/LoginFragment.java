@@ -90,7 +90,7 @@ public class LoginFragment extends Fragment
                 {
                     Customer loginCustomer = customerDBModel.getCustomer(emailEditText.getText().toString());
 
-                    CurrentData.setCustomer(loginCustomer);
+                    CurrentData.setCustomer(loginCustomer.getEmail());
                     Toast.makeText(getActivity(), "You have successfully logged in!", Toast.LENGTH_SHORT).show();
                     getActivity().onBackPressed();
                 }
@@ -117,12 +117,10 @@ public class LoginFragment extends Fragment
                     Customer newCustomer = new Customer(emailEditText.getText().toString(), passwordEditText.getText().toString(), newCartId);
                     Cart newCart = new Cart(newCartId, CurrentData.getCart().getItems(), CurrentData.getCart().getTotalAmount(), newCustomer.getEmail());
 
-                    newCart.setFoodItems(CurrentData.getCart().getItems());
-
                     cartDBModel.addCart(newCart);
                     customerDBModel.addCustomer(newCustomer);
 
-                    CurrentData.setCustomer(newCustomer);
+                    CurrentData.setCustomer(newCustomer.getEmail());
 
                     Toast.makeText(getActivity(), "You have successfully registered!", Toast.LENGTH_SHORT).show();
                     getActivity().onBackPressed();

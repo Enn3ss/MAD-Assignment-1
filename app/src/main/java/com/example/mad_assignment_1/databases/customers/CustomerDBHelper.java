@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.NonNull;
 
-import com.example.mad_assignment_1.databases.customers.CustomerDBSchema.customerTable;
+import com.example.mad_assignment_1.databases.customers.CustomerDBSchema.CustomerTable;
 
 public class CustomerDBHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
@@ -19,10 +19,10 @@ public class CustomerDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(@NonNull SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(
-            "CREATE TABLE " + customerTable.NAME + "(" +
-                    customerTable.Cols.EMAIL + " TEXT, " +
-                    customerTable.Cols.PASSWORD + " TEXT, " +
-                    customerTable.Cols.CART_ID + " TEXT);"
+            "CREATE TABLE " + CustomerTable.NAME + "(" +
+                    CustomerTable.Cols.EMAIL + " TEXT, " +
+                    CustomerTable.Cols.PASSWORD + " TEXT, " +
+                    CustomerTable.Cols.CART_ID + " TEXT);"
             );
     }
 

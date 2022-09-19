@@ -3,7 +3,7 @@ package com.example.mad_assignment_1.databases.customers;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
-import com.example.mad_assignment_1.databases.customers.CustomerDBSchema.customerTable;
+import com.example.mad_assignment_1.databases.customers.CustomerDBSchema.CustomerTable;
 
 public class CustomerDBCursor extends CursorWrapper {
     public CustomerDBCursor(Cursor cursor) {
@@ -11,9 +11,9 @@ public class CustomerDBCursor extends CursorWrapper {
     }
 
     public Customer getCustomer() {
-        String email = getString(getColumnIndex(customerTable.Cols.EMAIL));
-        String password = getString(getColumnIndex(customerTable.Cols.PASSWORD));
-        String cartId = getString(getColumnIndex(customerTable.Cols.CART_ID));
+        String email = getString(getColumnIndex(CustomerTable.Cols.EMAIL));
+        String password = getString(getColumnIndex(CustomerTable.Cols.PASSWORD));
+        String cartId = getString(getColumnIndex(CustomerTable.Cols.CART_ID));
         return new Customer(email, password, cartId);
     }
 }

@@ -36,10 +36,7 @@ public class PreviousCartAdapter extends Adapter<PreviousCartViewHolder> {
     public void onBindViewHolder(@NonNull PreviousCartViewHolder holder, int position) {
         ArrayList<String> items = new ArrayList<>(Arrays.asList(cartDBModel.getCartById(currentCart).getItems().split(",")));
 
-        System.out.println("test: " + cartDBModel.getCartById(currentCart).getItems());
-
-        System.out.println("id: " + currentCart);
-        Food food = foodDBModel.getFoodById(items.get(position)); //TODO
+        Food food = foodDBModel.getFoodById(items.get(position));
         holder.bind(food);
     }
 
