@@ -14,10 +14,6 @@ import android.widget.TextView;
 
 import com.example.mad_assignment_1.CurrentData;
 import com.example.mad_assignment_1.R;
-import com.example.mad_assignment_1.databases.carts.Cart;
-import com.example.mad_assignment_1.databases.carts.CartDBModel;
-import com.example.mad_assignment_1.databases.food.FoodDBModel;
-import com.example.mad_assignment_1.databases.orders.OrderDBModel;
 import com.example.mad_assignment_1.order_fragment.OrderListFragment;
 
 /**
@@ -26,9 +22,6 @@ import com.example.mad_assignment_1.order_fragment.OrderListFragment;
  * create an instance of this fragment.
  */
 public class CurrentCartFragment extends Fragment {
-    CartDBModel cartDBModel;
-    FoodDBModel foodDBModel;
-
     TextView cartIsEmpty;
     Button viewPreviousOrders;
 
@@ -43,11 +36,6 @@ public class CurrentCartFragment extends Fragment {
 
     public CurrentCartFragment() {
         // Required empty public constructor
-    }
-
-    public CurrentCartFragment(CartDBModel cartDBModel, FoodDBModel foodDBModel) {
-        this.cartDBModel = cartDBModel;
-        this.foodDBModel = foodDBModel;
     }
 
     /**
@@ -86,16 +74,10 @@ public class CurrentCartFragment extends Fragment {
         cartIsEmpty = (TextView) view.findViewById(R.id.cartIsEmpty);
         viewPreviousOrders = (Button) view.findViewById(R.id.viewPreviousOrders);
 
-        FoodDBModel foodDBModel = FoodDBModel.getInstance();
-        CartDBModel cartDBModel = CartDBModel.getInstance();
-        OrderDBModel orderDBModel = OrderDBModel.getInstance();
-
         RecyclerView recyclerView = view.findViewById(R.id.currentCartRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         CurrentCartAdapter currentCartAdapter = new CurrentCartAdapter(recyclerView, cartIsEmpty);
         recyclerView.setAdapter(currentCartAdapter);
-
-        Cart cart = CurrentData.getCart();
 
         if (CurrentData.isCartEmpty()) {
             recyclerView.setAlpha(0);

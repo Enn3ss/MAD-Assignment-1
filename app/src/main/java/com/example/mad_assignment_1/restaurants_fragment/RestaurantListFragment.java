@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mad_assignment_1.R;
-import com.example.mad_assignment_1.databases.restaurants.RestaurantDBModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,8 +18,6 @@ import com.example.mad_assignment_1.databases.restaurants.RestaurantDBModel;
  * create an instance of this fragment.
  */
 public class RestaurantListFragment extends Fragment {
-    RestaurantDBModel restaurantDBModel;
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -32,10 +29,6 @@ public class RestaurantListFragment extends Fragment {
 
     public RestaurantListFragment() {
         // Required empty public constructor
-    }
-
-    public RestaurantListFragment(RestaurantDBModel restaurantDBModel) {
-        this.restaurantDBModel = restaurantDBModel;
     }
 
     /**
@@ -72,7 +65,7 @@ public class RestaurantListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_restaurant_list, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.restaurantsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        RestaurantAdapter restaurantAdapter = new RestaurantAdapter(restaurantDBModel);
+        RestaurantAdapter restaurantAdapter = new RestaurantAdapter();
         recyclerView.setAdapter(restaurantAdapter);
         return view;
     }

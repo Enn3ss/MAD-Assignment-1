@@ -17,11 +17,9 @@ import com.example.mad_assignment_1.databases.restaurants.RestaurantDBModel;
 import java.util.ArrayList;
 
 public class RestaurantAdapter extends Adapter<RestaurantViewHolder> {
-    RestaurantDBModel restaurantDBModel;
     RestaurantViewModel restaurantViewModel;
 
-    public RestaurantAdapter(RestaurantDBModel restaurantDBModel) {
-        this.restaurantDBModel = restaurantDBModel;
+    public RestaurantAdapter() {
         this.restaurantViewModel = new ViewModelProvider(HomePageActivity.getInstance()).get(RestaurantViewModel.class);
     }
 
@@ -36,7 +34,7 @@ public class RestaurantAdapter extends Adapter<RestaurantViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull RestaurantViewHolder holder, int position) {
         int currPosition = position;
-        ArrayList<Restaurant> restaurants = restaurantDBModel.getAllRestaurants();
+        ArrayList<Restaurant> restaurants = RestaurantDBModel.getInstance().getAllRestaurants();
         holder.bind(restaurants.get(position));
 
         holder.restaurantIcon.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +54,6 @@ public class RestaurantAdapter extends Adapter<RestaurantViewHolder> {
 
     @Override
     public int getItemCount() {
-        return restaurantDBModel.getSize();
+        return RestaurantDBModel.getInstance().getSize();
     }
 }

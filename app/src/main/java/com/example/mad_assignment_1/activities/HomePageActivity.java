@@ -32,7 +32,6 @@ public class HomePageActivity extends AppCompatActivity {
 
     RestaurantViewModel restaurantViewModel;
     FoodViewModel foodViewModel;
-    FoodListFragment foodFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +47,7 @@ public class HomePageActivity extends AppCompatActivity {
         restaurantViewModel = new ViewModelProvider(this).get(RestaurantViewModel.class);
         foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
 
-        RestaurantDBModel restaurantDBModel = new RestaurantDBModel();
+        RestaurantDBModel restaurantDBModel = RestaurantDBModel.getInstance();
         restaurantDBModel.load(getApplicationContext());
 
         FoodDBModel foodDBModel = FoodDBModel.getInstance();
@@ -63,8 +62,8 @@ public class HomePageActivity extends AppCompatActivity {
         OrderDBModel orderDBModel = OrderDBModel.getInstance();
         orderDBModel.load(getApplicationContext());
 
-        SpecialsListFragment specialsFragment = new SpecialsListFragment(foodDBModel);
-        RestaurantListFragment restaurantFragment = new RestaurantListFragment(restaurantDBModel);
+        SpecialsListFragment specialsFragment = new SpecialsListFragment();
+        RestaurantListFragment restaurantFragment = new RestaurantListFragment();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.specialsFragmentContainer, specialsFragment).commit();

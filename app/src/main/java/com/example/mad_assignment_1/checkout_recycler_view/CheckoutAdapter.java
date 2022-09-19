@@ -18,11 +18,8 @@ import java.util.Arrays;
 
 public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutViewHolder>
 {
-    private FoodDBModel foodDBModel;
+    public CheckoutAdapter() {
 
-    public CheckoutAdapter(FoodDBModel foodDBModel)
-    {
-        this.foodDBModel = foodDBModel;
     }
 
     @NonNull
@@ -43,7 +40,7 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutViewHolder>
 
         if (!items.get(position).equals(""))
         {
-            Food food = foodDBModel.getFoodById(items.get(position));
+            Food food = FoodDBModel.getInstance().getFoodById(items.get(position));
             holder.bind(food);
         }
     }

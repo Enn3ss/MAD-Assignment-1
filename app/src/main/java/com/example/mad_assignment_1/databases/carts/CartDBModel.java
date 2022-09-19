@@ -3,18 +3,9 @@ package com.example.mad_assignment_1.databases.carts;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.mad_assignment_1.databases.carts.CartDBSchema.CartTable;
 import com.example.mad_assignment_1.databases.food.Food;
-import com.example.mad_assignment_1.databases.food.FoodDBCursor;
-import com.example.mad_assignment_1.databases.food.FoodDBModel;
-import com.example.mad_assignment_1.databases.food.foodDBSchema;
-import com.example.mad_assignment_1.databases.restaurants.RestaurantDBSchema;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CartDBModel
 {
@@ -101,34 +92,6 @@ public class CartDBModel
         }
     }
 
-    public void removeCart(Cart cart)
-    {
-        String[] whereValue = { String.valueOf(cart.getCartId()) };
-        db.delete(CartTable.NAME, CartTable.Cols.ID + " = ?", whereValue);
-    }
-
-    public List<Cart> getAllCarts()
-    {
-        List<Cart> cartList = new ArrayList<>();
-        CartDBCursor cursor = new CartDBCursor(db.query(CartTable.NAME, null, null, null, null, null, null));
-
-        try
-        {
-            cursor.moveToFirst();
-            while(!cursor.isAfterLast())
-            {
-                cartList.add(cursor.getCart());
-                cursor.moveToNext();
-            }
-        }
-        finally
-        {
-            cursor.close();
-        }
-
-        return cartList;
-    }
-
     public String getNewCartId()
     {
         int largestId = 0;
@@ -176,10 +139,5 @@ public class CartDBModel
             cartDBCursor.close();
         }
         return null;
-    }
-
-    public int getSize()
-    {
-        return (int) DatabaseUtils.queryNumEntries(db, CartTable.NAME);
     }
 }

@@ -3,13 +3,7 @@ package com.example.mad_assignment_1.databases.orders;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
-import com.example.mad_assignment_1.databases.food.Food;
 import com.example.mad_assignment_1.databases.orders.OrderDBSchema.orderTable;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.util.ArrayList;
 
 public class OrderDBCursor extends CursorWrapper {
     public OrderDBCursor(Cursor cursor) {

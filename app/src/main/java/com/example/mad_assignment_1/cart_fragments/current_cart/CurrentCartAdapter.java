@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import com.example.mad_assignment_1.CurrentData;
 import com.example.mad_assignment_1.R;
-import com.example.mad_assignment_1.databases.carts.Cart;
-import com.example.mad_assignment_1.databases.carts.CartDBModel;
 import com.example.mad_assignment_1.databases.food.Food;
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
 
@@ -21,8 +19,6 @@ import java.util.Arrays;
 
 public class CurrentCartAdapter extends Adapter<CurrentCartViewHolder>
 {
-    CartDBModel cartDBModel = CartDBModel.getInstance();
-    FoodDBModel foodDBModel = FoodDBModel.getInstance();
     RecyclerView recyclerView;
     TextView cartIsEmpty;
 
@@ -52,7 +48,7 @@ public class CurrentCartAdapter extends Adapter<CurrentCartViewHolder>
             cartIsEmpty.setAlpha(1);
         }
         else {
-            Food food = foodDBModel.getFoodById(items.get(position));
+            Food food = FoodDBModel.getInstance().getFoodById(items.get(position));
             holder.bind(food);
 
             holder.currentCartRemoveButton.setOnClickListener(new View.OnClickListener() {
@@ -60,9 +56,6 @@ public class CurrentCartAdapter extends Adapter<CurrentCartViewHolder>
                 public void onClick(View view) {
                     CurrentData.removeFoodFromCart(food.getId());
                     notifyItemRemoved(holder.getBindingAdapterPosition());
-                    System.out.println(CurrentData.getCart().getItems());
-
-                    //System.out.println("database: " + CartDBModel.getInstance().getCartById(CurrentData.getCart().getCartId()).getItems());
 
                     if (CurrentData.isCartEmpty()) {
                         recyclerView.setAlpha(0);
@@ -71,29 +64,6 @@ public class CurrentCartAdapter extends Adapter<CurrentCartViewHolder>
                 }
             });
         }
-
-        /*int currPosition = position;
-        Cart cart = CurrentData.getCart();
-        ArrayList<String> items = new ArrayList<>(Arrays.asList(cart.getItems().split(",")));
-
-        if (!items.get(position).equals("")) {
-            Food food = foodDBModel.getFoodById(items.get(position));
-            holder.bind(food);
-
-            holder.currentCartRemoveButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    cart.removeFood(food.getId());
-                    notifyItemRemoved(currPosition);
-                    System.out.println(cart.getItems());
-
-                    if (cart.getItems().equals("")) {
-                        recyclerView.setAlpha(0);
-                        cartIsEmpty.setAlpha(1);
-                    }
-                }
-            });
-        }*/
     }
 
     @Override

@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,7 +19,6 @@ import com.example.mad_assignment_1.R;
 import com.example.mad_assignment_1.checkout_recycler_view.CheckoutAdapter;
 import com.example.mad_assignment_1.databases.carts.Cart;
 import com.example.mad_assignment_1.databases.carts.CartDBModel;
-import com.example.mad_assignment_1.databases.food.FoodDBModel;
 import com.example.mad_assignment_1.databases.orders.Order;
 import com.example.mad_assignment_1.databases.orders.OrderDBModel;
 import com.example.mad_assignment_1.login_fragment.LoginFragment;
@@ -29,6 +30,7 @@ import java.util.Date;
 public class CheckoutPageActivity extends AppCompatActivity
 {
     private Button purchaseButton;
+    private TextView checkoutPageCartIsEmpty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,6 +39,14 @@ public class CheckoutPageActivity extends AppCompatActivity
         setContentView(R.layout.activity_checkout_page);
 
         purchaseButton = (Button) findViewById(R.id.purchaseButton);
+        checkoutPageCartIsEmpty = (TextView) findViewById(R.id.checkoutPageCartIsEmpty);
+
+        if (CurrentData.isCartEmpty()) {
+            checkoutPageCartIsEmpty.setAlpha(1);
+        }
+        else {
+            checkoutPageCartIsEmpty.setAlpha(0);
+        }
 
         if(CurrentData.getCustomer() == null) // Check if customer is already logged in
         {
@@ -53,10 +63,7 @@ public class CheckoutPageActivity extends AppCompatActivity
 
         RecyclerView rv = findViewById(R.id.checkoutRecView);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        FoodDBModel foodDBModel = FoodDBModel.getInstance();
-        OrderDBModel orderDBModel = OrderDBModel.getInstance();
-        CartDBModel cartDBModel = CartDBModel.getInstance();
-        CheckoutAdapter adapter = new CheckoutAdapter(foodDBModel);
+        CheckoutAdapter adapter = new CheckoutAdapter();
         rv.setAdapter(adapter);
 
         purchaseButton.setOnClickListener(new View.OnClickListener()
@@ -76,11 +83,11 @@ public class CheckoutPageActivity extends AppCompatActivity
 
                     // create order
                     Order order = new Order(CurrentData.getCustomer().getEmail(), time, date, CurrentData.getCart().getCartId());
-                    orderDBModel.addOrder(order);
+                    OrderDBModel.getInstance().addOrder(order);
 
                     // create new cart
-                    Cart newCart = new Cart(cartDBModel.getNewCartId(), "", CurrentData.getCustomer().getEmail());
-                    cartDBModel.addCart(newCart);
+                    Cart newCart = new Cart(CartDBModel.getInstance().getNewCartId(), "", CurrentData.getCustomer().getEmail());
+                    CartDBModel.getInstance().addCart(newCart);
 
                     CurrentData.getCustomer().setCartId(newCart.getCartId());
 

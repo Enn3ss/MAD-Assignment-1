@@ -11,10 +11,6 @@ public class FoodViewModel extends ViewModel {
         value.setValue("");
     }
 
-    public String getValue() {
-        return value.getValue();
-    }
-
     public void setValue(String value) {
         this.value.setValue(value);
     }

@@ -44,12 +44,6 @@ public class CurrentData {
         }
     }
 
-    public static void setCustomersCart(String cartId) {
-        if (customer != null) {
-            CustomerDBModel.getInstance().setCustomerCartId(customer, CartDBModel.getInstance().getCartById(cartId));
-        }
-    }
-
     public static boolean isCartEmpty() {
         if (customer == null) {
             return cart.isCartEmpty();

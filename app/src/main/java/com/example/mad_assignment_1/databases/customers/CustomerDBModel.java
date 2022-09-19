@@ -11,8 +11,6 @@ import com.example.mad_assignment_1.databases.carts.Cart;
 import com.example.mad_assignment_1.databases.carts.CartDBSchema;
 import com.example.mad_assignment_1.databases.customers.CustomerDBSchema.CustomerTable;
 
-import java.util.ArrayList;
-
 public class CustomerDBModel
 {
     private static CustomerDBModel instance = null;
@@ -42,29 +40,6 @@ public class CustomerDBModel
         cv.put(CustomerTable.Cols.PASSWORD, customer.getPassword());
         cv.put(CustomerTable.Cols.CART_ID, customer.getCartId());
         database.insert(CustomerTable.NAME, null, cv);
-    }
-
-    public ArrayList<Customer> getAllCustomers()
-    {
-        ArrayList<Customer> customerList = new ArrayList<>();
-        Cursor cursor = database.query(CustomerTable.NAME, null, null, null, null, null, null);
-        CustomerDBCursor customerDBCursor = new CustomerDBCursor(cursor);
-
-        try
-        {
-            customerDBCursor.moveToFirst();
-            while (!customerDBCursor.isAfterLast())
-            {
-                customerList.add(customerDBCursor.getCustomer());
-                customerDBCursor.moveToNext();
-            }
-        }
-        finally
-        {
-            customerDBCursor.close();
-        }
-
-        return customerList;
     }
 
     public boolean doesCustomerExist(String email)

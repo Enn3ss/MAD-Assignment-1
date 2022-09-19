@@ -37,31 +37,15 @@ public class Food {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getRestaurantId() {
         return restaurantId;
     }
 
-    public void setRestaurantId(String restaurantId) {
-        restaurantId = restaurantId;
-    }
-
     public int getImage() {
         return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
     }
 }

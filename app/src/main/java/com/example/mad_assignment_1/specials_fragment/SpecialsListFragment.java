@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mad_assignment_1.R;
-import com.example.mad_assignment_1.databases.food.FoodDBModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,8 +18,6 @@ import com.example.mad_assignment_1.databases.food.FoodDBModel;
  * create an instance of this fragment.
  */
 public class SpecialsListFragment extends Fragment {
-    FoodDBModel foodDBModel;
-
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -32,10 +29,6 @@ public class SpecialsListFragment extends Fragment {
 
     public SpecialsListFragment() {
         // Required empty public constructor
-    }
-
-    public SpecialsListFragment(FoodDBModel foodDBModel) {
-        this.foodDBModel = foodDBModel;
     }
 
     /**
@@ -72,7 +65,7 @@ public class SpecialsListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_specials_list, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.specialsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        SpecialsAdapter specialsAdapter = new SpecialsAdapter(foodDBModel);
+        SpecialsAdapter specialsAdapter = new SpecialsAdapter();
         recyclerView.setAdapter(specialsAdapter);
         return view;
     }

@@ -2,9 +2,6 @@ package com.example.mad_assignment_1.databases.carts;
 
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Cart
 {
     String cartId;
@@ -35,22 +32,6 @@ public class Cart
     public double getTotalAmount() { return totalAmount; }
 
     public String getCustomerEmail() { return customerEmail; }
-
-    public void setCartId(String cartId)
-    {
-        this.cartId = cartId;
-    }
-
-    public void setTotalAmount(double totalAmount)
-    {
-        this.totalAmount = totalAmount;
-    }
-
-    public void setCustomerEmail(String customerEmail) { this.customerEmail = customerEmail; }
-
-    public void setFoodItems(String items) {
-        this.items = items;
-    }
 
     public void addFood(String foodId)
     {

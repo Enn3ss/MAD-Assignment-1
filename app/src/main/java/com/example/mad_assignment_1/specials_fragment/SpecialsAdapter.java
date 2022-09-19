@@ -17,13 +17,9 @@ import com.example.mad_assignment_1.databases.food.FoodDBModel;
 import java.util.ArrayList;
 
 public class SpecialsAdapter extends Adapter<SpecialsViewHolder> {
-    FoodDBModel foodDBModel;
-    ArrayList<Food> foods;
     FoodViewModel foodViewModel;
 
-    public SpecialsAdapter(FoodDBModel foodDBModel) {
-        this.foodDBModel = foodDBModel;
-        this.foods = this.foodDBModel.getSpecials();
+    public SpecialsAdapter() {
         this.foodViewModel = new ViewModelProvider(HomePageActivity.getInstance()).get(FoodViewModel.class);
     }
 
@@ -37,20 +33,21 @@ public class SpecialsAdapter extends Adapter<SpecialsViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull SpecialsViewHolder holder, int position) {
-        int currPostion = position;
-        holder.bind(foods.get(position));
+        ArrayList<Food> items = FoodDBModel.getInstance().getSpecials();
+
+        holder.bind(items.get(position));
 
         holder.specialIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                foodViewModel.setValue(foods.get(currPostion).getId());
+                foodViewModel.setValue(items.get(holder.getBindingAdapterPosition()).getId());
             }
         });
 
         holder.specialName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                foodViewModel.setValue(foods.get(currPostion).getId());
+                foodViewModel.setValue(items.get(holder.getBindingAdapterPosition()).getId());
             }
         });
     }

@@ -13,11 +13,6 @@ import com.example.mad_assignment_1.OrderViewModel;
 import com.example.mad_assignment_1.R;
 import com.example.mad_assignment_1.cart_fragments.current_cart.CurrentCartFragment;
 import com.example.mad_assignment_1.cart_fragments.previous_cart.PreviousCartFragment;
-import com.example.mad_assignment_1.databases.carts.CartDBModel;
-import com.example.mad_assignment_1.databases.food.FoodDBModel;
-import com.example.mad_assignment_1.databases.orders.Order;
-import com.example.mad_assignment_1.databases.orders.OrderDBModel;
-import com.example.mad_assignment_1.order_fragment.OrderListFragment;
 
 public class CartPageActivity extends AppCompatActivity
 {
@@ -38,12 +33,7 @@ public class CartPageActivity extends AppCompatActivity
 
         orderViewModel = new ViewModelProvider(this).get(OrderViewModel.class);
 
-        CartDBModel cartDBModel = CartDBModel.getInstance();
-        FoodDBModel foodDBModel = FoodDBModel.getInstance();
-        OrderDBModel orderDBModel = OrderDBModel.getInstance();
-
-        CurrentCartFragment currentCartFragment = new CurrentCartFragment(cartDBModel, foodDBModel);
-        OrderListFragment orderListFragment = new OrderListFragment();
+        CurrentCartFragment currentCartFragment = new CurrentCartFragment();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.cartFragmentContainer, currentCartFragment).setReorderingAllowed(true).commit();

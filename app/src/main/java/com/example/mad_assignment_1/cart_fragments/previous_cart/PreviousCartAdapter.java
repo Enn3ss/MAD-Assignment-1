@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PreviousCartAdapter extends Adapter<PreviousCartViewHolder> {
-    FoodDBModel foodDBModel = FoodDBModel.getInstance();
-    CartDBModel cartDBModel = CartDBModel.getInstance();
     String currentCart;
 
     public PreviousCartAdapter(String currentCart) {
@@ -34,14 +32,14 @@ public class PreviousCartAdapter extends Adapter<PreviousCartViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PreviousCartViewHolder holder, int position) {
-        ArrayList<String> items = new ArrayList<>(Arrays.asList(cartDBModel.getCartById(currentCart).getItems().split(",")));
+        ArrayList<String> items = new ArrayList<>(Arrays.asList(CartDBModel.getInstance().getCartById(currentCart).getItems().split(",")));
 
-        Food food = foodDBModel.getFoodById(items.get(position));
+        Food food = FoodDBModel.getInstance().getFoodById(items.get(position));
         holder.bind(food);
     }
 
     @Override
     public int getItemCount() {
-        return cartDBModel.getCartById(currentCart).getSize();
+        return CartDBModel.getInstance().getCartById(currentCart).getSize();
     }
 }

@@ -11,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mad_assignment_1.R;
-import com.example.mad_assignment_1.databases.carts.Cart;
-import com.example.mad_assignment_1.databases.carts.CartDBModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,7 +18,6 @@ import com.example.mad_assignment_1.databases.carts.CartDBModel;
  * create an instance of this fragment.
  */
 public class PreviousCartFragment extends Fragment {
-    CartDBModel cartDBModel;
     String currentCart;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -37,7 +34,6 @@ public class PreviousCartFragment extends Fragment {
     }
 
     public PreviousCartFragment(String currentCart) {
-        this.cartDBModel = CartDBModel.getInstance();
         this.currentCart = currentCart;
     }
 
