@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.mad_assignment_1.R;
-import com.example.mad_assignment_1.databases.orders.OrderDBModel;
+
+import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,7 +21,7 @@ import com.example.mad_assignment_1.databases.orders.OrderDBModel;
  * create an instance of this fragment.
  */
 public class OrderListFragment extends Fragment {
-    OrderDBModel orderDBModel = OrderDBModel.getInstance();
+    TextView noPreviousOrders;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -66,9 +68,12 @@ public class OrderListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_order_list, container, false);
+
+        noPreviousOrders = (TextView) view.findViewById(R.id.noPreviousOrders);
+
         RecyclerView recyclerView = view.findViewById(R.id.ordersRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        OrderAdapter orderAdapter = new OrderAdapter();
+        OrderAdapter orderAdapter = new OrderAdapter(noPreviousOrders);
         recyclerView.setAdapter(orderAdapter);
         return view;
     }

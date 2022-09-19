@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.NonNull;
 
-import com.example.mad_assignment_1.databases.orders.OrderDBSchema.orderTable;
+import com.example.mad_assignment_1.databases.orders.OrderDBSchema.OrderTable;
 
 public class OrderDBHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
@@ -19,11 +19,11 @@ public class OrderDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(@NonNull SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(
-            "create table " + orderTable.NAME + "(" +
-                    orderTable.Cols.CUSTOMER_ID + " TEXT, " +
-                    orderTable.Cols.TIME + " TEXT, " +
-                    orderTable.Cols.DATE + " TEXT, " +
-                    orderTable.Cols.CART_ID + " TEXT);"
+            "create table " + OrderTable.NAME + "(" +
+                    OrderTable.Cols.CUSTOMER_EMAIL + " TEXT, " +
+                    OrderTable.Cols.TIME + " TEXT, " +
+                    OrderTable.Cols.DATE + " TEXT, " +
+                    OrderTable.Cols.CART_ID + " TEXT);"
             );
     }
 

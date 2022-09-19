@@ -3,7 +3,7 @@ package com.example.mad_assignment_1.databases.food;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
-import com.example.mad_assignment_1.databases.food.foodDBSchema.foodTable;
+import com.example.mad_assignment_1.databases.food.foodDBSchema.FoodTable;
 
 public class FoodDBCursor extends CursorWrapper {
     public FoodDBCursor(Cursor cursor) {
@@ -11,12 +11,12 @@ public class FoodDBCursor extends CursorWrapper {
     }
 
     public Food getFood() {
-        String id = getString(getColumnIndex(foodTable.Cols.ID));
-        String name = getString(getColumnIndex(foodTable.Cols.NAME));
-        double price = getDouble(getColumnIndex(foodTable.Cols.PRICE));
-        String description = getString(getColumnIndex(foodTable.Cols.DESCRIPTION));
-        String restaurantId = getString(getColumnIndex(foodTable.Cols.RESTAURANT_ID));
-        int image = getInt(getColumnIndex(foodTable.Cols.IMAGE));
+        String id = getString(getColumnIndex(FoodTable.Cols.ID));
+        String name = getString(getColumnIndex(FoodTable.Cols.NAME));
+        double price = getDouble(getColumnIndex(FoodTable.Cols.PRICE));
+        String description = getString(getColumnIndex(FoodTable.Cols.DESCRIPTION));
+        String restaurantId = getString(getColumnIndex(FoodTable.Cols.RESTAURANT_ID));
+        int image = getInt(getColumnIndex(FoodTable.Cols.IMAGE));
         return new Food(id, name, price, description, restaurantId, image);
     }
 }

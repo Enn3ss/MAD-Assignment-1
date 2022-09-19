@@ -3,7 +3,7 @@ package com.example.mad_assignment_1.databases.restaurants;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
-import com.example.mad_assignment_1.databases.restaurants.RestaurantDBSchema.restaurantTable;
+import com.example.mad_assignment_1.databases.restaurants.RestaurantDBSchema.RestaurantTable;
 
 public class RestaurantDBCursor extends CursorWrapper {
     public RestaurantDBCursor(Cursor cursor) {
@@ -11,9 +11,9 @@ public class RestaurantDBCursor extends CursorWrapper {
     }
 
     public Restaurant getRestaurant() {
-        String id = getString(getColumnIndex(restaurantTable.Cols.ID));
-        String name = getString(getColumnIndex(restaurantTable.Cols.NAME));
-        int image = getInt(getColumnIndex(restaurantTable.Cols.IMAGE));
+        String id = getString(getColumnIndex(RestaurantTable.Cols.ID));
+        String name = getString(getColumnIndex(RestaurantTable.Cols.NAME));
+        int image = getInt(getColumnIndex(RestaurantTable.Cols.IMAGE));
         return new Restaurant(id, name, image);
     }
 }

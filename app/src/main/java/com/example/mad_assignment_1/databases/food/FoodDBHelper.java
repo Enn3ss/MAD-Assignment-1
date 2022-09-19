@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.NonNull;
 
 import com.example.mad_assignment_1.data.FoodData;
-import com.example.mad_assignment_1.databases.food.foodDBSchema.foodTable;
+import com.example.mad_assignment_1.databases.food.foodDBSchema.FoodTable;
 
 public class FoodDBHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
@@ -21,26 +21,26 @@ public class FoodDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(@NonNull SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(
-                "CREATE TABLE " + foodTable.NAME + "(" +
-                        foodTable.Cols.ID + " TEXT, " +
-                        foodTable.Cols.NAME + " TEXT, " +
-                        foodTable.Cols.PRICE + " REAL, " +
-                        foodTable.Cols.DESCRIPTION + " TEXT, " +
-                        foodTable.Cols.RESTAURANT_ID + " TEXT, " +
-                        foodTable.Cols.IMAGE + " INTEGER);"
+                "CREATE TABLE " + FoodTable.NAME + "(" +
+                        FoodTable.Cols.ID + " TEXT, " +
+                        FoodTable.Cols.NAME + " TEXT, " +
+                        FoodTable.Cols.PRICE + " REAL, " +
+                        FoodTable.Cols.DESCRIPTION + " TEXT, " +
+                        FoodTable.Cols.RESTAURANT_ID + " TEXT, " +
+                        FoodTable.Cols.IMAGE + " INTEGER);"
         );
 
         FoodData foodData = FoodData.getInstance();
 
         for (int i = 0; i < foodData.size(); i++) {
             ContentValues contentValues = new ContentValues();
-            contentValues.put(foodTable.Cols.ID, foodData.getAtIndex(i).getId());
-            contentValues.put(foodTable.Cols.NAME, foodData.getAtIndex(i).getName());
-            contentValues.put(foodTable.Cols.PRICE, foodData.getAtIndex(i).getPrice());
-            contentValues.put(foodTable.Cols.DESCRIPTION, foodData.getAtIndex(i).getDescription());
-            contentValues.put(foodTable.Cols.RESTAURANT_ID, foodData.getAtIndex(i).getRestaurantId());
-            contentValues.put(foodTable.Cols.IMAGE, foodData.getAtIndex(i).getImage());
-            sqLiteDatabase.insert(foodTable.NAME, null, contentValues);
+            contentValues.put(FoodTable.Cols.ID, foodData.getAtIndex(i).getId());
+            contentValues.put(FoodTable.Cols.NAME, foodData.getAtIndex(i).getName());
+            contentValues.put(FoodTable.Cols.PRICE, foodData.getAtIndex(i).getPrice());
+            contentValues.put(FoodTable.Cols.DESCRIPTION, foodData.getAtIndex(i).getDescription());
+            contentValues.put(FoodTable.Cols.RESTAURANT_ID, foodData.getAtIndex(i).getRestaurantId());
+            contentValues.put(FoodTable.Cols.IMAGE, foodData.getAtIndex(i).getImage());
+            sqLiteDatabase.insert(FoodTable.NAME, null, contentValues);
         }
     }
 

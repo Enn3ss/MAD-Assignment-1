@@ -33,21 +33,20 @@ public class RestaurantAdapter extends Adapter<RestaurantViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantViewHolder holder, int position) {
-        int currPosition = position;
         ArrayList<Restaurant> restaurants = RestaurantDBModel.getInstance().getAllRestaurants();
         holder.bind(restaurants.get(position));
 
         holder.restaurantIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                restaurantViewModel.setValue(restaurants.get(currPosition).getId());
+                restaurantViewModel.setValue(restaurants.get(holder.getBindingAdapterPosition()).getId());
             }
         });
 
         holder.restaurantName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                restaurantViewModel.setValue(restaurants.get(currPosition).getId());
+                restaurantViewModel.setValue(restaurants.get(holder.getBindingAdapterPosition()).getId());
             }
         });
     }

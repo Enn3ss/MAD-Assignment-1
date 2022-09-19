@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.mad_assignment_1.databases.food.foodDBSchema.foodTable;
+import com.example.mad_assignment_1.databases.food.foodDBSchema.FoodTable;
 
 import java.util.ArrayList;
 
@@ -30,7 +30,7 @@ public class FoodDBModel {
 
     public ArrayList<Food> getSpecials() {
         ArrayList<Food> foodList = new ArrayList<>();
-        Cursor cursor = database.query(foodTable.NAME, null, null, null, null, null, "RANDOM() LIMIT 10");
+        Cursor cursor = database.query(FoodTable.NAME, null, null, null, null, null, "RANDOM() LIMIT 10");
         FoodDBCursor foodDBCursor = new FoodDBCursor(cursor);
 
         try {
@@ -50,8 +50,8 @@ public class FoodDBModel {
         ArrayList<Food> foodList = new ArrayList<>();
         String searchQuery =
                 "SELECT * " +
-                "FROM " + foodTable.NAME + " " +
-                "WHERE " + foodTable.Cols.RESTAURANT_ID + " = " + restaurantId;
+                "FROM " + FoodTable.NAME + " " +
+                "WHERE " + FoodTable.Cols.RESTAURANT_ID + " = " + restaurantId;
         Cursor cursor = database.rawQuery(searchQuery, null);
         FoodDBCursor foodDBCursor = new FoodDBCursor(cursor);
 
@@ -72,8 +72,8 @@ public class FoodDBModel {
         Food food = null;
         String searchQuery =
                 "SELECT * " +
-                "FROM " + foodTable.NAME + " " +
-                "WHERE " + foodTable.Cols.ID + " = " + foodId;
+                "FROM " + FoodTable.NAME + " " +
+                "WHERE " + FoodTable.Cols.ID + " = " + foodId;
         Cursor cursor = database.rawQuery(searchQuery, null);
         FoodDBCursor foodDBCursor = new FoodDBCursor(cursor);
 
@@ -94,8 +94,8 @@ public class FoodDBModel {
         int count = 0;
         String searchQuery =
                 "SELECT * " +
-                "FROM " + foodTable.NAME + " " +
-                "WHERE " + foodTable.Cols.RESTAURANT_ID + " = " + restaurantId;
+                "FROM " + FoodTable.NAME + " " +
+                "WHERE " + FoodTable.Cols.RESTAURANT_ID + " = " + restaurantId;
         Cursor cursor = database.rawQuery(searchQuery, null);
         FoodDBCursor foodDBCursor = new FoodDBCursor(cursor);
 

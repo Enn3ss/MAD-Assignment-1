@@ -2,7 +2,7 @@ package com.example.mad_assignment_1.databases.food;
 
 public class foodDBSchema {
     //TABLE
-    public static class foodTable {
+    public static class FoodTable {
         public static final String NAME = "foods";
         //COLUMNS
         public static class Cols {

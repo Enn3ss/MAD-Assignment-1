@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.NonNull;
 
 import com.example.mad_assignment_1.data.RestaurantData;
-import com.example.mad_assignment_1.databases.restaurants.RestaurantDBSchema.restaurantTable;
+import com.example.mad_assignment_1.databases.restaurants.RestaurantDBSchema.RestaurantTable;
 
 public class RestaurantDBHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
@@ -21,20 +21,20 @@ public class RestaurantDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(@NonNull SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(
-            "CREATE TABLE " + restaurantTable.NAME + "(" +
-                    restaurantTable.Cols.ID + " TEXT, " +
-                    restaurantTable.Cols.NAME + " TEXT, " +
-                    restaurantTable.Cols.IMAGE + " INTEGER);"
+            "CREATE TABLE " + RestaurantTable.NAME + "(" +
+                    RestaurantTable.Cols.ID + " TEXT, " +
+                    RestaurantTable.Cols.NAME + " TEXT, " +
+                    RestaurantTable.Cols.IMAGE + " INTEGER);"
             );
 
         RestaurantData restaurantData = RestaurantData.getInstance();
 
         for (int i = 0; i < restaurantData.size(); i++) {
             ContentValues contentValues = new ContentValues();
-            contentValues.put(restaurantTable.Cols.ID, restaurantData.getAtIndex(i).getId());
-            contentValues.put(restaurantTable.Cols.NAME, restaurantData.getAtIndex(i).getName());
-            contentValues.put(restaurantTable.Cols.IMAGE, restaurantData.getAtIndex(i).getImage());
-            sqLiteDatabase.insert(restaurantTable.NAME, null, contentValues);
+            contentValues.put(RestaurantTable.Cols.ID, restaurantData.getAtIndex(i).getId());
+            contentValues.put(RestaurantTable.Cols.NAME, restaurantData.getAtIndex(i).getName());
+            contentValues.put(RestaurantTable.Cols.IMAGE, restaurantData.getAtIndex(i).getImage());
+            sqLiteDatabase.insert(RestaurantTable.NAME, null, contentValues);
         }
     }
 

@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.mad_assignment_1.databases.restaurants.RestaurantDBSchema.restaurantTable;
+import com.example.mad_assignment_1.databases.restaurants.RestaurantDBSchema.RestaurantTable;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,7 @@ public class RestaurantDBModel {
 
     public ArrayList<Restaurant> getAllRestaurants() {
         ArrayList<Restaurant> restaurantList = new ArrayList<>();
-        Cursor cursor = database.query(restaurantTable.NAME, null, null, null, null, null ,null);
+        Cursor cursor = database.query(RestaurantTable.NAME, null, null, null, null, null ,null);
         RestaurantDBCursor restaurantDBCursor = new RestaurantDBCursor(cursor);
 
         try {
@@ -48,6 +48,6 @@ public class RestaurantDBModel {
     }
 
     public int getSize() {
-        return (int) DatabaseUtils.queryNumEntries(database, restaurantTable.NAME);
+        return (int) DatabaseUtils.queryNumEntries(database, RestaurantTable.NAME);
     }
 }
