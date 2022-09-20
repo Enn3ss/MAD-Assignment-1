@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Nate/Documents/GitHub/MAD-Assignment-1/app/src/main/res/layout-sw600dp/activity_home_page.xml" value="0.275" />
+        <entry key="..\:/Users/Nate/Documents/GitHub/MAD-Assignment-1/app/src/main/res/layout-sw600dp/fragment_login.xml" value="0.24591503267973855" />
         <entry key="..\:/Users/Nate/Documents/GitHub/MAD-Assignment-1/app/src/main/res/layout/activity_cart_page.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Nate/Documents/GitHub/MAD-Assignment-1/app/src/main/res/layout/activity_check_out_page.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Nate/Documents/GitHub/MAD-Assignment-1/app/src/main/res/layout/activity_checkout_page.xml" value="0.36666666666666664" />
@@ -18,30 +20,6 @@
         <entry key="..\:/Users/Nate/Documents/GitHub/MAD-Assignment-1/app/src/main/res/layout/fragment_specials.xml" value="0.25271739130434784" />
         <entry key="..\:/Users/Nate/Documents/GitHub/MAD-Assignment-1/app/src/main/res/layout/restaurant_view_holder.xml" value="0.26721014492753625" />
         <entry key="..\:/Users/Nate/Documents/GitHub/MAD-Assignment-1/app/src/main/res/layout/specials_view_holder.xml" value="0.25271739130434784" />
-<<<<<<< Updated upstream
-=======
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/activity_cart_page.xml" value="0.33" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/activity_home_page.xml" value="0.36666666666666664" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/cart_item_view_holder.xml" value="0.36666666666666664" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/cart_view_holder.xml" value="0.3" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/current_cart_view_holder.xml" value="0.1" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/each_cart_item_view.xml" value="0.17831813576494426" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/each_checkout_item_view.xml" value="0.36666666666666664" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/food_view_holder.xml" value="0.36666666666666664" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/fragment_cart_list.xml" value="0.36666666666666664" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/fragment_current_cart.xml" value="0.36666666666666664" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/fragment_food_item.xml" value="0.17831813576494426" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/fragment_food_list.xml" value="0.36666666666666664" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/fragment_login.xml" value="0.36666666666666664" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/fragment_order_list.xml" value="0.17831813576494426" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/fragment_previous_cart.xml" value="0.36666666666666664" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/fragment_restaurant_list.xml" value="0.36666666666666664" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/fragment_restaurants.xml" value="0.36666666666666664" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/fragment_specials.xml" value="0.36666666666666664" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/order_view_holder.xml" value="0.36666666666666664" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/previous_cart_view_holder.xml" value="0.1" />
-        <entry key="..\:/_windowFiles/documents/GitHub/MAD_Worksheet_1/MAD-Assignment-1/app/src/main/res/layout/restaurant_view_holder.xml" value="0.36666666666666664" />
->>>>>>> Stashed changes
         <entry key="..\:/_windowFiles/documents/_androidStudioProjects/MAD_Assignment_1/app/src/main/res/drawable-v24/chicken_treat_icon_background.xml" value="0.2915" />
         <entry key="..\:/_windowFiles/documents/_androidStudioProjects/MAD_Assignment_1/app/src/main/res/drawable-v24/dominos_icon_background.xml" value="0.2915" />
         <entry key="..\:/_windowFiles/documents/_androidStudioProjects/MAD_Assignment_1/app/src/main/res/drawable-v24/forklore_icon_background.xml" value="0.2915" />
