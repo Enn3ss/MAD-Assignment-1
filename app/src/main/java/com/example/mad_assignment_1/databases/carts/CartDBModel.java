@@ -62,22 +62,31 @@ public class CartDBModel
 
     public void removeItemFromCart(Cart cart, Food food) {
         String newItems;
+        String cartItems = cart.getItems();
+        String foodId = food.getId();
+
         if (!cart.isCartEmpty()) {
-            // if the first id in items is equal to foodId
-            if (String.valueOf(cart.getItems().charAt(0)).equals(food.getId())) {
-                // if items has more than 1 id in it
-                if (cart.getItems().length() > 1) {
-                    // remove the first id and the comma following it
-                    newItems = cart.getItems().substring(2);
+            // if there is more than 1 id in items
+            if (cartItems.contains(",")) {
+                // get the first id
+                String firstItem = cartItems.substring(cartItems.indexOf(cartItems.charAt(0)), cartItems.indexOf(","));
+                //if the first id is equal to foodId
+                if (firstItem.equals(foodId)) {
+                    // remove the first id plus the ","
+                    newItems = cartItems.replaceFirst(firstItem + ",", "");
                 }
                 else {
-                    // set items to empty as the only id was removed
-                    newItems = "";
+                    // remove the foodId plus the "," before it
+                    newItems = cartItems.replaceFirst("," + foodId, "");
                 }
             }
-            // if the first id is not equal to foodId
             else {
-                newItems = cart.getItems().replaceFirst("," + food.getId(), "");
+                if (cartItems.equals(foodId)) {
+                    newItems = "";
+                }
+                else {
+                    newItems = cartItems;
+                }
             }
             double newTotalAmount = cart.getTotalAmount() - food.getPrice();
 

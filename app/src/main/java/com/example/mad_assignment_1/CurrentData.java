@@ -33,6 +33,15 @@ public class CurrentData {
         return customer;
     }
 
+    public static double getTotalPrice() {
+        if (customer == null) {
+            return cart.getTotalAmount();
+        }
+        else {
+            return CartDBModel.getInstance().getCartById(customer.getCartId()).getTotalAmount();
+        }
+    }
+
     public static void setCustomer(String customerEmail) {
         if (customerEmail == null) {
             customer = null;

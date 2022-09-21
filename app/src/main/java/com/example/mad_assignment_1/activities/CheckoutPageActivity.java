@@ -31,6 +31,7 @@ public class CheckoutPageActivity extends AppCompatActivity
 {
     private Button purchaseButton;
     private TextView checkoutPageCartIsEmpty;
+    private TextView checkoutPageTotalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,12 +41,15 @@ public class CheckoutPageActivity extends AppCompatActivity
 
         purchaseButton = (Button) findViewById(R.id.purchaseButton);
         checkoutPageCartIsEmpty = (TextView) findViewById(R.id.checkoutPageCartIsEmpty);
+        checkoutPageTotalPrice = (TextView) findViewById(R.id.checkoutPageTotalPrice);
 
         if (CurrentData.isCartEmpty()) {
             checkoutPageCartIsEmpty.setAlpha(1);
+            checkoutPageTotalPrice.setText("Total Price: $0.00");
         }
         else {
             checkoutPageCartIsEmpty.setAlpha(0);
+            checkoutPageTotalPrice.setText("Total Price: $" + CurrentData.getTotalPrice());
         }
 
         if(CurrentData.getCustomer() == null) // Check if customer is already logged in

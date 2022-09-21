@@ -2,6 +2,11 @@ package com.example.mad_assignment_1.databases.carts;
 
 import com.example.mad_assignment_1.databases.food.FoodDBModel;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Cart
 {
     String cartId;
@@ -46,21 +51,24 @@ public class Cart
 
     public void removeFood(String foodId) {
         if (!isCartEmpty()) {
-            // if the first id in items is equal to foodId
-            if (String.valueOf(items.charAt(0)).equals(foodId)) {
-                // if items has more than 1 id in it
-                if (items.length() > 1) {
-                    // remove the first id and the comma following it
-                    items = items.substring(2);
+            // if there is more than 1 id in items
+            if (items.contains(",")) {
+                // get the first id
+                String firstItem = items.substring(items.indexOf(items.charAt(0)), items.indexOf(","));
+                //if the first id is equal to foodId
+                if (firstItem.equals(foodId)) {
+                    // remove the first id plus the ","
+                    items = items.replaceFirst(firstItem + ",", "");
                 }
                 else {
-                    // set items to empty as the only id was removed
-                    items = "";
+                    // remove the foodId plus the "," before it
+                    items = items.replaceFirst("," + foodId, "");
                 }
             }
-            // if the first id is not equal to foodId
             else {
-                items = items.replaceFirst("," + foodId, "");
+                if (items.equals(foodId)) {
+                    items = "";
+                }
             }
             totalAmount -= FoodDBModel.getInstance().getFoodById(foodId).getPrice();
         }

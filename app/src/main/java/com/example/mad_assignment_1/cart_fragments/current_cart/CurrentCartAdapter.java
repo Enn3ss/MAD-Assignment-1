@@ -43,7 +43,7 @@ public class CurrentCartAdapter extends Adapter<CurrentCartViewHolder>
         ArrayList<String> items = new ArrayList<>(Arrays.asList(CurrentData.getCart().getItems().split(",")));
 
         //if cart is empty
-        if (CurrentData.getCart().isCartEmpty()) {
+        if (CurrentData.isCartEmpty()) {
             recyclerView.setAlpha(0);
             cartIsEmpty.setAlpha(1);
         }
